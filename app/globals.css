@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #1a1a1a;
+    --primary-red: #e53e3e;
+    --deep-red: #c53030;
+    --text-secondary: #6b6b6b;
+    --border-light: #f0f0f0;
+  }
+
+  body {
+    @apply bg-white text-[#1A1A1A] antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+}
+
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-royal-pattern {
+  background-image: radial-gradient(#e53e3e 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  opacity: 0.03;
+}
+
+.royal-border {
+  border: 1px solid #fde8e8;
+  position: relative;
+}
+
+.royal-border::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 1px solid #fde8e8;
+  pointer-events: none;
+}
