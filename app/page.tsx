@@ -20,6 +20,18 @@ export default function Home() {
   const springX = useSpring(mouseX, { stiffness: 50, damping: 20 });
   const springY = useSpring(mouseY, { stiffness: 50, damping: 20 });
 
+  // Scroll parallax logic for Hero
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const foregroundY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const contentScale = useTransform(scrollYProgress, [0, 0.8], [1, 0.9]);
+
   // Move image based on spring values
   const imageX = useTransform(springX, [-0.5, 0.5], ["-1%", "1%"]);
   const imageY = useTransform(springY, [-0.5, 0.5], ["-1%", "1%"]);
@@ -67,47 +79,47 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white font-sans text-[#1A1A1A] selection:bg-[#FDE8E8] selection:text-[#E53E3E]">
-      {/* NAVBAR */}
-      <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${
-          isScrolled ? "bg-white/95 backdrop-blur-md shadow-md py-4" : "bg-transparent py-10"
-        }`}
-      >
-        <div className="container mx-auto px-8 md:px-16 flex justify-between items-center">
-          <Link href="/" className={`font-serif text-3xl font-bold tracking-tight transition-colors duration-700 relative z-10 ${isScrolled ? "text-[#1A1A1A]" : "text-white"}`}>
-            VIVA<span className="text-[#E53E3E] ml-0.5">PIZZERIA</span>
-          </Link>
-          
-          <nav className="hidden xl:flex items-center gap-16">
-            {["The Gallery", "Our Story", "Reservations", "Contact"].map((item) => (
-              <Link 
-                key={item}
-                href={`#${item.toLowerCase().replace(" ", "")}`} 
-                className={`text-[11px] font-bold uppercase tracking-[0.25em] transition-all relative group ${isScrolled ? "text-[#6B6B6B]" : "text-white/80"} hover:text-[#E53E3E]`}
-              >
-                {item}
-                <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-px bg-[#E53E3E] transition-all group-hover:w-full"></span>
-              </Link>
-            ))}
-          </nav>
-          
-          <Link 
-            href="#reservation" 
-            className={`hidden md:inline-flex items-center justify-center border px-10 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all active:scale-[0.98] ${
-              isScrolled 
-                ? "border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white" 
-                : "border-white text-white hover:bg-white hover:text-black"
-            }`}
-          >
-            Reserve a Table
-          </Link>
-        </div>
-      </header>
+      {/* SECTION 1 - HERO (MASKED) WITH STICKY HEADER WRAPPER */}
+      <section ref={heroRef} className="relative min-h-[125vh] flex flex-col bg-white">
+        {/* LOCALIZED STICKY NAVBAR */}
+        <header
+          className={`sticky top-0 left-0 w-full z-50 transition-all duration-700 ${
+            isScrolled ? "bg-white/95 backdrop-blur-md shadow-md py-4" : "bg-transparent py-10"
+          }`}
+        >
+          <div className="container mx-auto px-8 md:px-16 flex justify-between items-center">
+            <Link href="/" className={`font-serif text-3xl font-bold tracking-tight transition-colors duration-700 relative z-10 ${isScrolled ? "text-[#1A1A1A]" : "text-white"}`}>
+              VIVA<span className="text-[#E53E3E] ml-0.5">PIZZERIA</span>
+            </Link>
+            
+            <nav className="hidden xl:flex items-center gap-10">
+              {["Best Sellers", "The Gallery", "Services", "Blog", "Our Story"].map((item) => (
+                <Link 
+                  key={item}
+                  href={`#${item.toLowerCase().replace(/\s+/g, "")}`} 
+                  className={`text-[10px] font-black uppercase tracking-[0.25em] transition-all relative group ${isScrolled ? "text-[#6B6B6B]" : "text-white/80"} hover:text-[#E53E3E]`}
+                >
+                  {item}
+                  <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-px bg-[#E53E3E] transition-all group-hover:w-full"></span>
+                </Link>
+              ))}
+            </nav>
+            
+            <Link 
+              href="#reservation" 
+              className={`hidden md:inline-flex items-center justify-center border px-10 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all active:scale-[0.98] ${
+                isScrolled 
+                  ? "border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white" 
+                  : "border-white text-white hover:bg-white hover:text-black"
+              }`}
+            >
+              Reserve a Table
+            </Link>
+          </div>
+        </header>
 
-      {/* SECTION 1 - HERO (MASKED) */}
-      <section className="relative min-h-screen flex flex-col overflow-hidden bg-white">
         <div 
-          className="relative min-h-[85vh] w-full bg-[#0A0A0A] flex items-center"
+          className="relative min-h-[110vh] w-full bg-[#0A0A0A] flex items-center -mt-32"
           style={{
             WebkitMaskImage: "url('/rugged-brush.svg'), linear-gradient(to bottom, black, black)",
             maskImage: "url('/rugged-brush.svg'), linear-gradient(to bottom, black, black)",
@@ -119,48 +131,44 @@ export default function Home() {
             maskPosition: "bottom, top",
           }}
         >
-          <div className="absolute inset-0 bg-royal-pattern opacity-10 -z-10"></div>
-          <div className="absolute inset-0 bg-grunge mix-blend-overlay -z-10"></div>
+          {/* PARALLAX BACKGROUND LAYERS */}
+          <motion.div style={{ y: backgroundY }} className="absolute inset-0 bg-royal-pattern opacity-10 -z-10"></motion.div>
           
           {/* Top Legibility Gradient */}
           <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black/80 to-transparent z-0 pointer-events-none"></div>
           
-          <div className="container mx-auto px-8 md:px-16 grid lg:grid-cols-2 gap-20 items-center pt-40 pb-20">
+          <motion.div 
+            style={{ y: foregroundY, opacity: contentOpacity, scale: contentScale }}
+            className="container mx-auto px-8 md:px-16 grid lg:grid-cols-2 gap-32 items-center pt-52 pb-32"
+          >
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="max-w-2xl"
             >
-              <div className="mb-8 flex flex-col gap-2">
+              <div className="mb-12 flex flex-col gap-4">
                 <motion.span 
-                  initial={{ rotate: -3, scale: 0.9 }}
-                  animate={{ rotate: -2, scale: 1 }}
-                  transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
-                  className="font-brush text-[#E53E3E] text-2xl md:text-3xl tracking-widest drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]"
+                  className="text-[#E53E3E] text-sm md:text-base font-bold tracking-[0.4em] uppercase"
                 >
                   HOT & FRESH
                 </motion.span>
                 <div className="flex items-center gap-4">
                   <span className="h-px w-10 bg-[#E53E3E]"></span>
-                  <span className="text-[#E53E3E] text-[11px] font-black uppercase tracking-[0.5em] font-sans-alt">Est. 1994 • Napoli</span>
+                  <span className="text-[#E53E3E] text-[11px] font-black uppercase tracking-[0.5em] font-sans">Est. 1994 • Napoli</span>
                 </div>
               </div>
               
-              <h1 className="font-poster text-8xl md:text-[140px] leading-[0.8] mb-8 tracking-tighter text-white drop-shadow-[10px_10px_0px_rgba(229,62,62,0.3)]">
+              <h1 className="font-serif text-7xl md:text-[100px] leading-[0.9] mb-10 font-black tracking-tight text-white">
                 CHEESE <br />
-                <span className="text-[#E53E3E]">PIZZA</span>
+                <span className="italic font-normal text-[#E53E3E]">PIZZA</span>
               </h1>
               
-              <p className="font-sans-alt text-xl text-gray-300 mb-12 leading-relaxed max-w-lg font-medium tracking-wide">
-                LIMITED TIME OFFER: <span className="text-white font-bold border-b-2 border-[#E53E3E]">50% OFF</span> ALL SIGNATURE CRUSTS
-              </p>
-              
               <div className="flex flex-wrap gap-8 items-center">
-                <Link href="#reservation" className="bg-[#E53E3E] text-white px-14 py-6 text-[13px] font-black uppercase tracking-[0.25em] hover:bg-[#C53030] transition-all shadow-[0_10px_40px_rgba(229,62,62,0.4)] active:scale-95 font-sans-alt">
+                <Link href="#reservation" className="bg-[#E53E3E] text-white px-14 py-6 text-[11px] font-bold uppercase tracking-[0.3em] hover:bg-[#C53030] transition-all shadow-[0_10px_40px_rgba(229,62,62,0.3)] active:scale-95 font-sans">
                   Order Now
                 </Link>
-                <Link href="#thegallery" className="group border-b-2 border-white/10 pb-1 text-[12px] font-black uppercase tracking-[0.3em] flex items-center gap-3 transition-all hover:border-[#E53E3E] hover:text-[#E53E3E] text-white font-sans-alt">
+                <Link href="#thegallery" className="group border-b border-white/20 pb-1 text-[11px] font-bold uppercase tracking-[0.3em] flex items-center gap-3 transition-all hover:border-[#E53E3E] hover:text-[#E53E3E] text-white font-sans">
                   View Menu <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-2" />
                 </Link>
               </div>
@@ -179,13 +187,139 @@ export default function Home() {
                     src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200"
                     alt="Signature Pizza"
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover transition-transform duration-1000 hover:scale-105"
                     priority
                   />
                 </div>
               </div>
             </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* SECTION 1.5 - BEST SELLERS */}
+      <section id="bestsellers" className="py-32 bg-white relative">
+        {/* Top Rugged Transition */}
+        <div className="absolute top-0 left-0 w-full h-32 -translate-y-full pointer-events-none">
+          <div 
+            className="w-full h-full bg-white"
+            style={{
+              WebkitMaskImage: "url('/rugged-brush.svg')",
+              maskImage: "url('/rugged-brush.svg')",
+              WebkitMaskSize: "100% 100%",
+              maskSize: "100% 100%",
+              WebkitMaskRepeat: "no-repeat",
+              maskRepeat: "no-repeat",
+              transform: "rotate(180deg)"
+            }}
+          ></div>
+        </div>
+
+        <div className="container mx-auto px-8 md:px-16">
+          <div className="text-center mb-24">
+            <h2 className="font-brush text-5xl md:text-6xl text-[#E53E3E] tracking-tight">OUR BEST SELLER ITEMS</h2>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { name: "HALF & HALF PIZZA", price: "$17.40 - $20.40", img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=600" },
+              { name: "MARGHERITA", price: "$8.40 - $20.40", img: "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?q=80&w=600" },
+              { name: "BACON CHEESE", price: "$8.90 - $12.90", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=600" },
+              { name: "PEPPERONI", price: "$17.40 - $20.40", img: "https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?q=80&w=600" }
+            ].map((pizza, i) => (
+              <motion.div 
+                key={pizza.name}
+                initial="initial"
+                whileHover="hover"
+                variants={{
+                  initial: { y: 0 },
+                  hover: { y: -10 }
+                }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, type: "spring", stiffness: 300 }}
+                className="relative p-8 flex flex-col items-center text-center transition-all duration-500 group"
+              >
+                {/* Highlight Background (Visible on Hover) */}
+                <motion.div 
+                  variants={{
+                    initial: { opacity: 0, scale: 0.9, rotate: -5 },
+                    hover: { opacity: 1, scale: 1.15, rotate: 2 }
+                  }}
+                  className="absolute inset-0 bg-[#E53E3E] -z-10" 
+                  style={{
+                    WebkitMaskImage: "url('/rugged-brush.svg')",
+                    maskImage: "url('/rugged-brush.svg')",
+                    WebkitMaskSize: "100% 100%",
+                    maskSize: "100% 100%",
+                  }}
+                ></motion.div>
+
+                <div className="relative w-48 h-48 mb-8">
+                  <Image 
+                    src={pizza.img} 
+                    alt={pizza.name} 
+                    fill 
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover rounded-full shadow-2xl group-hover:rotate-12 transition-transform duration-700"
+                  />
+                </div>
+                
+                <motion.h3 
+                  variants={{ initial: { color: "#1A1A1A" }, hover: { color: "#FFFFFF" } }}
+                  className="font-poster text-xl mb-3 tracking-tight"
+                >
+                  {pizza.name}
+                </motion.h3>
+                
+                <motion.p 
+                  variants={{ initial: { color: "#6B6B6B" }, hover: { color: "rgba(255,255,255,0.8)" } }}
+                  className="text-xs font-serif italic mb-6 px-4"
+                >
+                  Cherry tomatoes, fresh tomato, basil drizzle & mozzarella
+                </motion.p>
+                
+                <motion.div 
+                  variants={{ initial: { color: "#E53E3E" }, hover: { color: "#FFFFFF" } }}
+                  className="font-poster text-lg mb-8"
+                >
+                  {pizza.price}
+                </motion.div>
+                
+                <motion.button 
+                  variants={{
+                    initial: { backgroundColor: "#E53E3E", color: "#FFFFFF" },
+                    hover: { backgroundColor: "#FFFFFF", color: "#E53E3E" }
+                  }}
+                  className="flex items-center gap-2 px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all"
+                >
+                  <PizzaIcon className="w-3.5 h-3.5" />
+                  Add to Cart
+                </motion.button>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-20 text-center">
+            <button className="bg-[#1A1A1A] text-white px-12 py-5 text-[11px] font-black uppercase tracking-[0.4em] hover:bg-[#E53E3E] transition-all rounded-sm shadow-xl active:scale-95">
+              View All Items
+            </button>
+          </div>
+        </div>
+
+        {/* Bottom Rugged Transition */}
+        <div className="absolute bottom-0 left-0 w-full h-32 translate-y-full pointer-events-none z-10">
+          <div 
+            className="w-full h-full bg-white"
+            style={{
+              WebkitMaskImage: "url('/rugged-brush.svg')",
+              maskImage: "url('/rugged-brush.svg')",
+              WebkitMaskSize: "100% 100%",
+              maskSize: "100% 100%",
+              WebkitMaskRepeat: "no-repeat",
+              maskRepeat: "no-repeat",
+            }}
+          ></div>
         </div>
       </section>
 
@@ -278,6 +412,295 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SECTION 2.5 - SERVICES */}
+      <section id="services" className="py-40 bg-white relative overflow-hidden">
+        {/* Top Rugged Transition */}
+        <div className="absolute top-0 left-0 w-full h-32 -translate-y-1/2 pointer-events-none z-10">
+          <div 
+            className="w-full h-full bg-white"
+            style={{
+              WebkitMaskImage: "url('/rugged-brush.svg')",
+              maskImage: "url('/rugged-brush.svg')",
+              WebkitMaskSize: "100% 100%",
+              maskSize: "100% 100%",
+              WebkitMaskRepeat: "no-repeat",
+              maskRepeat: "no-repeat",
+              transform: "rotate(180deg)"
+            }}
+          ></div>
+        </div>
+
+        {/* Decorative Corner Pizza */}
+        <div className="absolute -top-20 -right-20 w-80 h-80 opacity-20 pointer-events-none rotate-12">
+          <Image 
+            src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=800" 
+            alt="Decorative Pizza" 
+            fill 
+            className="object-contain"
+          />
+        </div>
+
+        <div className="container mx-auto px-8 md:px-16">
+          <div className="text-center mb-24">
+            <span className="font-brush text-[#E53E3E] text-3xl mb-4 block">Quality Meal</span>
+            <h2 className="text-7xl font-poster tracking-tighter text-[#1A1A1A] relative inline-block">
+              SERVICES
+              <div className="absolute inset-0 bg-grunge mix-blend-multiply opacity-40 pointer-events-none"></div>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+            {/* Left Services */}
+            <div className="space-y-24 order-2 lg:order-1">
+              {[
+                { 
+                  title: "BIRTHDAY PARTY", 
+                  icon: <PizzaIcon className="w-8 h-8" />, 
+                  desc: "Create unforgettable memories with our bespoke birthday packages, featuring wood-fired pizzas and custom desserts."
+                },
+                { 
+                  title: "CHARITY EVENTS", 
+                  icon: <Star className="w-8 h-8" />, 
+                  desc: "We are committed to our community. Partner with us for your next charity gala or local fundraising event."
+                }
+              ].map((service, i) => (
+                <motion.div 
+                  key={service.title}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.2 }}
+                  className="flex flex-col items-center lg:items-end text-center lg:text-right group"
+                >
+                  <div className="text-[#E53E3E] mb-6 transform transition-transform group-hover:scale-110 duration-500">
+                    {service.icon}
+                  </div>
+                  <h3 className="font-poster text-2xl mb-4 tracking-tight group-hover:text-[#E53E3E] transition-colors">{service.title}</h3>
+                  <p className="text-gray-500 text-sm font-serif leading-relaxed max-w-xs italic">
+                    {service.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Central Chef Image */}
+            <motion.div 
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="order-1 lg:order-2 flex justify-center"
+            >
+              <div className="relative w-full max-w-md aspect-[3/4] border-[12px] border-[#E53E3E] p-4 bg-white shadow-2xl">
+                <div className="relative w-full h-full bg-gray-100 overflow-hidden">
+                  <Image 
+                    src="https://images.unsplash.com/photo-1581299894007-aaa50297cf16?q=80&w=800" 
+                    alt="Our Master Chef" 
+                    fill 
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                  />
+                </div>
+                {/* Floating "Chef" Label */}
+                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-[#1A1A1A] text-white px-8 py-3 font-poster text-xl tracking-widest shadow-xl">
+                  MASTER CHEF
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Services */}
+            <div className="space-y-24 order-3 lg:order-3">
+              {[
+                { 
+                  title: "EVENT PARTY", 
+                  icon: <Clock className="w-8 h-8" />, 
+                  desc: "From corporate gatherings to intimate soirées, our team handles every detail of your event catering."
+                },
+                { 
+                  title: "PRIVATE DINING", 
+                  icon: <Wine className="w-8 h-8" />, 
+                  desc: "Enjoy an exclusive culinary experience in our private suites, tailored precisely to your palate."
+                }
+              ].map((service, i) => (
+                <motion.div 
+                  key={service.title}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.2 }}
+                  className="flex flex-col items-center lg:items-start text-center lg:text-left group"
+                >
+                  <div className="text-[#E53E3E] mb-6 transform transition-transform group-hover:scale-110 duration-500">
+                    {service.icon}
+                  </div>
+                  <h3 className="font-poster text-2xl mb-4 tracking-tight group-hover:text-[#E53E3E] transition-colors">{service.title}</h3>
+                  <p className="text-gray-500 text-sm font-serif leading-relaxed max-w-xs italic">
+                    {service.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Rugged Transition */}
+        <div className="absolute bottom-0 left-0 w-full h-32 translate-y-1/2 pointer-events-none z-10">
+          <div 
+            className="w-full h-full bg-white"
+            style={{
+              WebkitMaskImage: "url('/rugged-brush.svg')",
+              maskImage: "url('/rugged-brush.svg')",
+              WebkitMaskSize: "100% 100%",
+              maskSize: "100% 100%",
+              WebkitMaskRepeat: "no-repeat",
+              maskRepeat: "no-repeat",
+            }}
+          ></div>
+        </div>
+      </section>
+
+      {/* SECTION 2.7 - RECENT POSTS */}
+      <section id="blog" className="py-40 bg-white relative">
+        {/* Top Rugged Transition */}
+        <div className="absolute top-0 left-0 w-full h-32 -translate-y-1/2 pointer-events-none z-10">
+          <div 
+            className="w-full h-full bg-white"
+            style={{
+              WebkitMaskImage: "url('/rugged-brush.svg')",
+              maskImage: "url('/rugged-brush.svg')",
+              WebkitMaskSize: "100% 100%",
+              maskSize: "100% 100%",
+              WebkitMaskRepeat: "no-repeat",
+              maskRepeat: "no-repeat",
+              transform: "rotate(180deg)"
+            }}
+          ></div>
+        </div>
+        <div className="container mx-auto px-8 md:px-16">
+          <div className="mb-24">
+            <span className="font-brush text-[#E53E3E] text-3xl mb-4 block">Quality Meal</span>
+            <h2 className="text-7xl font-poster tracking-tighter text-[#1A1A1A] relative inline-block">
+              RECENT POST
+              <div className="absolute inset-0 bg-grunge mix-blend-multiply opacity-40 pointer-events-none"></div>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            {/* Featured Post (Left) */}
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative aspect-[4/5] overflow-hidden shadow-2xl group"
+            >
+              <Image 
+                src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?q=80&w=1200" 
+                alt="Featured Recipe" 
+                fill 
+                className="object-cover transition-transform duration-1000 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+            </motion.div>
+
+            {/* Post List (Right) */}
+            <div className="space-y-16">
+              {[
+                {
+                  title: "SECRETS OF DELICIOUS PIZZA",
+                  img: "https://images.unsplash.com/photo-1593504049359-74330189a345?q=80&w=600",
+                  desc: "Unlock the professional techniques behind the perfect wood-fired crust and balanced toppings."
+                },
+                {
+                  title: "TOP 5 DESSERTS WORTH TRYING",
+                  img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=600",
+                  desc: "From classic Tiramisu to our modern chocolate orbits, discover the sweets that define our heritage."
+                }
+              ].map((post, i) => (
+                <motion.div 
+                  key={post.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.2 }}
+                  className="flex flex-col md:flex-row gap-8 items-center group"
+                >
+                  <div className="relative w-full md:w-52 aspect-square flex-shrink-0 overflow-hidden shadow-xl">
+                    <Image 
+                      src={post.img} 
+                      alt={post.title} 
+                      fill 
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-poster text-2xl mb-4 group-hover:text-[#E53E3E] transition-colors">{post.title}</h3>
+                    <p className="text-gray-500 text-sm font-serif italic mb-6 leading-relaxed">
+                      {post.desc}
+                    </p>
+                    <button className="text-[10px] font-black uppercase tracking-[0.3em] border-b-2 border-[#E53E3E] pb-1 hover:bg-[#E53E3E] hover:text-white transition-all px-2">
+                      Read More
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Floating Ingredients Decoration */}
+          <motion.div 
+            style={{ y: foregroundY }}
+            className="absolute bottom-20 right-10 w-96 h-96 pointer-events-none opacity-80 hidden xl:block"
+          >
+            <Image 
+              src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?q=80&w=800" 
+              alt="Floating Ingredients" 
+              fill 
+              className="object-contain"
+            />
+          </motion.div>
+        </div>
+
+        {/* NEWSLETTER BANNER */}
+        <div className="mt-40 container mx-auto px-8 md:px-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-white border-2 border-[#F0F0F0] p-10 md:p-16 flex flex-col lg:flex-row justify-between items-center gap-12 shadow-[0_30px_60px_rgba(0,0,0,0.05)]"
+          >
+            <div className="max-w-md">
+              <h4 className="font-poster text-3xl mb-4 tracking-tight">SUBSCRIBE TO OUR SPECIAL OFFERS</h4>
+              <p className="text-gray-500 text-sm font-serif italic">Sign up today for our newsletter and receive 15% OFF on your first purchase.</p>
+            </div>
+            <div className="flex w-full lg:w-auto gap-0 shadow-lg">
+              <input 
+                type="email" 
+                placeholder="Type Your Email" 
+                className="flex-1 lg:w-80 px-6 py-5 bg-[#F9F9F9] border-none focus:ring-2 focus:ring-[#E53E3E] text-sm font-serif outline-none"
+              />
+              <button className="bg-[#E53E3E] text-white px-12 py-5 text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#C53030] transition-all">
+                Submit
+              </button>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Bottom Rugged Transition */}
+        <div className="absolute bottom-0 left-0 w-full h-32 translate-y-1/2 pointer-events-none z-10">
+          <div 
+            className="w-full h-full bg-white"
+            style={{
+              WebkitMaskImage: "url('/rugged-brush.svg')",
+              maskImage: "url('/rugged-brush.svg')",
+              WebkitMaskSize: "100% 100%",
+              maskSize: "100% 100%",
+              WebkitMaskRepeat: "no-repeat",
+              maskRepeat: "no-repeat",
+            }}
+          ></div>
+        </div>
+      </section>
+
 
       {/* SECTION 3 - STORY */}
       <section id="ourstory" className="py-40 bg-white relative overflow-hidden">
@@ -333,7 +756,7 @@ export default function Home() {
               </Link>
               <div className="flex gap-8">
                 {[Instagram, Facebook].map((Icon, i) => (
-                  <a key={i} href="#" className="text-white hover:text-[#E53E3E] transition-colors">
+                  <a key={i} href="#" className="text-white hover:text-[#E53E3E] transition-colors" aria-label={`Follow us on ${i === 0 ? "Instagram" : "Facebook"}`}>
                     <Icon className="w-5 h-5 stroke-[1.5px]" />
                   </a>
                 ))}
@@ -353,7 +776,7 @@ export default function Home() {
             
             <div>
               <h4 className="text-[10px] font-black uppercase tracking-[0.4em] mb-10 text-[#E53E3E]">The Estate</h4>
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-300">
+              <p id="reservation" className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-300">
                 123 Via della Tradizione <br /> Napoli, Italy 80100 <br /><br />
                 reservations@vivapizzeria.it
               </p>
