@@ -74,16 +74,16 @@ export default function Home() {
         }`}
       >
         <div className="container mx-auto px-8 md:px-16 flex justify-between items-center">
-          <Link href="/" className="font-serif text-3xl font-bold text-[#1A1A1A] tracking-tight">
+          <Link href="/" className={`font-serif text-3xl font-bold tracking-tight transition-colors duration-700 relative z-10 ${isScrolled ? "text-[#1A1A1A]" : "text-white"}`}>
             VIVA<span className="text-[#E53E3E] ml-0.5">PIZZERIA</span>
           </Link>
           
-          <nav className="hidden lg:flex items-center gap-12">
+          <nav className="hidden xl:flex items-center gap-16">
             {["The Gallery", "Our Story", "Reservations", "Contact"].map((item) => (
               <Link 
                 key={item}
                 href={`#${item.toLowerCase().replace(" ", "")}`} 
-                className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#6B6B6B] hover:text-[#E53E3E] transition-all relative group"
+                className={`text-[11px] font-bold uppercase tracking-[0.25em] transition-all relative group ${isScrolled ? "text-[#6B6B6B]" : "text-white/80"} hover:text-[#E53E3E]`}
               >
                 {item}
                 <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-px bg-[#E53E3E] transition-all group-hover:w-full"></span>
@@ -93,65 +93,99 @@ export default function Home() {
           
           <Link 
             href="#reservation" 
-            className="hidden md:inline-flex items-center justify-center border border-[#1A1A1A] px-10 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-[#1A1A1A] hover:text-white transition-all active:scale-[0.98]"
+            className={`hidden md:inline-flex items-center justify-center border px-10 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all active:scale-[0.98] ${
+              isScrolled 
+                ? "border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white" 
+                : "border-white text-white hover:bg-white hover:text-black"
+            }`}
           >
             Reserve a Table
           </Link>
         </div>
       </header>
 
-      {/* SECTION 1 - HERO */}
-      <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        <div className="absolute inset-0 bg-royal-pattern -z-10"></div>
-        
-        <div className="container mx-auto px-8 md:px-16 grid lg:grid-cols-2 gap-20 items-center">
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
-            className="max-w-xl"
-          >
-            <div className="mb-10 inline-flex items-center gap-4">
-              <span className="h-px w-10 bg-[#E53E3E]"></span>
-              <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.4em]">Est. 1994 • Napoli</span>
-            </div>
-            
-            <h1 className="font-serif text-7xl md:text-[92px] leading-[0.85] font-black mb-10 tracking-tight">
-              A Masterpiece <br />
-              <span className="italic font-normal serif text-[#E53E3E]">In Every</span> <br />
-              Detail.
-            </h1>
-            
-            <p className="font-serif italic text-2xl text-[#4A4A4A] mb-10 leading-relaxed max-w-lg">
-              "Indulge in a curated selection of wood-fired pizzas, artisanal pastas, and bespoke cocktails."
-            </p>
-            
-            <div className="flex flex-wrap gap-6 items-center">
-              <Link href="#reservation" className="bg-[#E53E3E] text-white px-12 py-5 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#C53030] transition-all shadow-[0_10px_30px_rgba(229,62,62,0.25)]">
-                Experience Now
-              </Link>
-              <Link href="#thegallery" className="group border-b border-[#1A1A1A]/20 pb-1 text-[11px] font-bold uppercase tracking-[0.2em] flex items-center gap-3 transition-all hover:border-[#E53E3E] hover:text-[#E53E3E]">
-                Explore Gallery <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-          </motion.div>
+      {/* SECTION 1 - HERO (MASKED) */}
+      <section className="relative min-h-screen flex flex-col overflow-hidden bg-white">
+        <div 
+          className="relative min-h-[85vh] w-full bg-[#0A0A0A] flex items-center"
+          style={{
+            WebkitMaskImage: "url('/rugged-brush.svg'), linear-gradient(to bottom, black, black)",
+            maskImage: "url('/rugged-brush.svg'), linear-gradient(to bottom, black, black)",
+            WebkitMaskSize: "100% 200px, 100% calc(100% - 200px)",
+            maskSize: "100% 200px, 100% calc(100% - 200px)",
+            WebkitMaskRepeat: "no-repeat",
+            maskRepeat: "no-repeat",
+            WebkitMaskPosition: "bottom, top",
+            maskPosition: "bottom, top",
+          }}
+        >
+          <div className="absolute inset-0 bg-royal-pattern opacity-10 -z-10"></div>
+          <div className="absolute inset-0 bg-grunge mix-blend-overlay -z-10"></div>
+          
+          {/* Top Legibility Gradient */}
+          <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black/80 to-transparent z-0 pointer-events-none"></div>
+          
+          <div className="container mx-auto px-8 md:px-16 grid lg:grid-cols-2 gap-20 items-center pt-40 pb-20">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="max-w-2xl"
+            >
+              <div className="mb-8 flex flex-col gap-2">
+                <motion.span 
+                  initial={{ rotate: -3, scale: 0.9 }}
+                  animate={{ rotate: -2, scale: 1 }}
+                  transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
+                  className="font-brush text-[#E53E3E] text-2xl md:text-3xl tracking-widest drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]"
+                >
+                  HOT & FRESH
+                </motion.span>
+                <div className="flex items-center gap-4">
+                  <span className="h-px w-10 bg-[#E53E3E]"></span>
+                  <span className="text-[#E53E3E] text-[11px] font-black uppercase tracking-[0.5em] font-sans-alt">Est. 1994 • Napoli</span>
+                </div>
+              </div>
+              
+              <h1 className="font-poster text-8xl md:text-[140px] leading-[0.8] mb-8 tracking-tighter text-white drop-shadow-[10px_10px_0px_rgba(229,62,62,0.3)]">
+                CHEESE <br />
+                <span className="text-[#E53E3E]">PIZZA</span>
+              </h1>
+              
+              <p className="font-sans-alt text-xl text-gray-300 mb-12 leading-relaxed max-w-lg font-medium tracking-wide">
+                LIMITED TIME OFFER: <span className="text-white font-bold border-b-2 border-[#E53E3E]">50% OFF</span> ALL SIGNATURE CRUSTS
+              </p>
+              
+              <div className="flex flex-wrap gap-8 items-center">
+                <Link href="#reservation" className="bg-[#E53E3E] text-white px-14 py-6 text-[13px] font-black uppercase tracking-[0.25em] hover:bg-[#C53030] transition-all shadow-[0_10px_40px_rgba(229,62,62,0.4)] active:scale-95 font-sans-alt">
+                  Order Now
+                </Link>
+                <Link href="#thegallery" className="group border-b-2 border-white/10 pb-1 text-[12px] font-black uppercase tracking-[0.3em] flex items-center gap-3 transition-all hover:border-[#E53E3E] hover:text-[#E53E3E] text-white font-sans-alt">
+                  View Menu <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-2" />
+                </Link>
+              </div>
+            </motion.div>
 
-          <motion.div 
+            <motion.div 
             style={{ x: imageX, y: imageY }}
+            initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 2 }}
+            transition={{ duration: 1, delay: 0.2 }}
             className="relative z-10"
           >
-            <div className="royal-border p-3 md:p-6 bg-white shadow-2xl">
-              <div className="relative aspect-[4/5] md:aspect-square overflow-hidden bg-[#F8F8F8]">
-                <Image 
-                  src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200"
-                  alt="Signature Pizza"
-                  fill
-                  className="object-cover transition-transform duration-1000 hover:scale-105"
-                  priority
-                />
+            <div className="royal-border p-3 md:p-6 bg-[#1A1A1A] shadow-[30px_30px_60px_rgba(0,0,0,0.5)] border-white/10">
+              <div className="relative aspect-[4/5] md:aspect-square overflow-hidden bg-[#0A0A0A]">
+                  <Image 
+                    src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200"
+                    alt="Signature Pizza"
+                    fill
+                    className="object-cover transition-transform duration-1000 hover:scale-105"
+                    priority
+                  />
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -244,8 +278,9 @@ export default function Home() {
         </div>
       </section>
 
+
       {/* SECTION 3 - STORY */}
-      <section id="ourstory" className="py-40 bg-[#F9F9F9] relative overflow-hidden">
+      <section id="ourstory" className="py-40 bg-white relative overflow-hidden">
         <div className="absolute inset-0 bg-royal-pattern opacity-5"></div>
         <div className="container mx-auto px-8 md:px-16 grid lg:grid-cols-2 gap-32 items-center relative z-10">
           <motion.div 

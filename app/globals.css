@@ -45,3 +45,9 @@
   border: 1px solid #fde8e8;
   pointer-events: none;
 }
+
+.bg-grunge {
+  background-image: url("https://www.transparenttextures.com/patterns/pinstriped-suit.png");
+  opacity: 0.05;
+  pointer-events: none;
+}

@@ -1,0 +1,29 @@
+<svg width="1440" height="200" viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <filter id="rugged" x="-5%" y="0" width="110%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" result="noise" />
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" />
+  </filter>
+  
+  <g>
+    <!-- The main filtered body -->
+    <path d="M-50 0 H1490 V150 C1240 180 1040 120 840 150 C640 180 440 120 240 150 C140 165 40 155 -50 160 Z" fill="black" filter="url(#rugged)" />
+    
+    <!-- Clean cover for the top edge -->
+    <rect x="0" y="0" width="1440" height="10" fill="black" />
+    
+    <!-- Clean cover for the left edge -->
+    <rect x="0" y="0" width="10" height="160" fill="black" />
+    
+    <!-- Clean cover for the right edge -->
+    <rect x="1430" y="0" width="10" height="160" fill="black" />
+  </g>
+
+  <!-- Splatters only at the bottom -->
+  <g filter="url(#rugged)">
+    <circle cx="100" cy="180" r="2" fill="black" opacity="0.5" />
+    <circle cx="300" cy="190" r="3" fill="black" opacity="0.3" />
+    <circle cx="600" cy="170" r="1.5" fill="black" opacity="0.6" />
+    <circle cx="900" cy="195" r="4" fill="black" opacity="0.2" />
+    <circle cx="1200" cy="185" r="2.5" fill="black" opacity="0.4" />
+  </g>
+</svg>
