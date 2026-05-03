@@ -294,7 +294,7 @@ export default function Home() {
                   className="flex items-center gap-2 px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all"
                 >
                   <PizzaIcon className="w-3.5 h-3.5" />
-                  Add to Cart
+                  View Menu
                 </motion.button>
               </motion.div>
             ))}
