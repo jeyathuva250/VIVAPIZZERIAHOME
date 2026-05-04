@@ -205,7 +205,7 @@ export default function Home() {
                 THE ART OF <br />
                 <span className="italic font-normal text-[#E53E3E] drop-shadow-[0_0_20px_rgba(229,62,62,0.4)]">FIRE.</span>
               </h1>
-              
+
               <p className="text-white/60 text-base md:text-lg lg:text-xl font-serif italic mb-10 md:mb-12 max-w-lg leading-relaxed">
                 "Mastering the alchemy of wood-fired flames and hand-kneaded tradition since 1994."
               </p>
@@ -677,7 +677,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 3 - STORY */}
-      <section id="ourstory" className="pt-20 pb-40 md:pt-32 md:pb-56 bg-white relative overflow-hidden">
+      <section id="ourstory" className="pt-20 pb-32 md:pt-32 md:pb-40 bg-white relative">
         <div className="absolute inset-0 bg-royal-pattern opacity-5"></div>
         <div className="container mx-auto px-6 md:px-16 grid lg:grid-cols-2 gap-16 md:gap-32 items-center relative z-10">
 
@@ -722,10 +722,10 @@ export default function Home() {
       </section>
 
       {/* SECTION 3.5 - REVIEWS */}
-      <section id="reviews" className="pt-48 pb-48 md:pt-64 md:pb-64 bg-[#1A1A1A] relative">
+      <section id="reviews" className="pt-8 pb-32 md:pt-12 md:pb-40 bg-[#1A1A1A] relative">
         <div className="absolute inset-0 bg-royal-pattern opacity-5 pointer-events-none"></div>
         <BrushBorder position="top" color="#1A1A1A" />
-        
+
         <div className="container mx-auto px-6 md:px-16">
           <div className="text-center mb-16 md:mb-24 relative z-10">
             <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Guest Experiences</span>
@@ -772,7 +772,7 @@ export default function Home() {
                   <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">{review.role}</span>
                 </div>
                 <div className="absolute top-8 right-8 text-gray-100 opacity-50 group-hover:text-[#E53E3E] group-hover:opacity-10 transition-colors duration-500">
-                  <svg className="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                  <svg className="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" /></svg>
                 </div>
               </motion.div>
             ))}
@@ -782,9 +782,9 @@ export default function Home() {
 
 
       {/* SECTION 4 - SOCIAL FEEDS IFRAMES */}
-      <section className="pt-48 pb-40 md:pt-64 md:pb-56 bg-white relative">
+      <section className="pt-8 pb-32 md:pt-12 md:pb-40 bg-white relative">
         <BrushBorder position="top" color="white" />
-        
+
         <div className="container mx-auto px-6 md:px-16 relative z-10">
           <div className="text-center mb-16">
             <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Join Our Community</span>
@@ -798,9 +798,9 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <a 
-                href="https://www.instagram.com/vivapizzeriaandpastahouse/" 
-                target="_blank" 
+              <a
+                href="https://www.instagram.com/vivapizzeriaandpastahouse/"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="block group bg-gradient-to-br from-[#f09433] via-[#e6683c] to-[#bc1888] rounded-3xl p-10 shadow-2xl hover:-translate-y-3 transition-all duration-500 overflow-hidden relative"
               >
@@ -825,19 +825,19 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <a 
-                href="https://www.tiktok.com/search?q=viva%20pizzeria&t=1744150773232" 
-                target="_blank" 
+              <a
+                href="https://www.tiktok.com/search?q=viva%20pizzeria&t=1744150773232"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="block group bg-[#000000] rounded-3xl p-10 shadow-[0_20px_50px_rgba(37,244,238,0.15)] hover:shadow-[0_20px_50px_rgba(254,44,85,0.25)] hover:-translate-y-3 transition-all duration-500 overflow-hidden relative"
               >
                 {/* TikTok Accents */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#fe2c55] rounded-full mix-blend-screen filter blur-[60px] opacity-40 group-hover:opacity-70 transition-opacity"></div>
                 <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#25f4ee] rounded-full mix-blend-screen filter blur-[60px] opacity-40 group-hover:opacity-70 transition-opacity"></div>
-                
+
                 <div className="relative z-10 flex flex-col items-center text-center">
                   <div className="bg-white rounded-full p-5 mb-8 shadow-xl transform group-hover:scale-110 transition-transform duration-500">
-                    <svg className="w-10 h-10" viewBox="0 0 24 24" fill="black"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 15.71a6.34 6.34 0 0 0 6.27 6.36 6.35 6.35 0 0 0 6.25-6.36V7.94a8.17 8.17 0 0 0 4.38 1.25V5.75a4.79 4.79 0 0 1-2.31-.69z"/></svg>
+                    <svg className="w-10 h-10" viewBox="0 0 24 24" fill="black"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 15.71a6.34 6.34 0 0 0 6.27 6.36 6.35 6.35 0 0 0 6.25-6.36V7.94a8.17 8.17 0 0 0 4.38 1.25V5.75a4.79 4.79 0 0 1-2.31-.69z" /></svg>
                   </div>
                   <h3 className="font-serif text-3xl font-bold text-white mb-3">TikTok</h3>
                   <p className="text-white/90 font-sans text-sm mb-8">Watch our kitchen in action</p>
@@ -855,9 +855,9 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
             >
-              <a 
-                href="https://web.facebook.com/people/Viva-Pizzeria-and-Pasta/61564076226960/" 
-                target="_blank" 
+              <a
+                href="https://web.facebook.com/people/Viva-Pizzeria-and-Pasta/61564076226960/"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="block group bg-gradient-to-br from-[#1877F2] to-[#0b4d9e] rounded-3xl p-10 shadow-[0_20px_50px_rgba(24,119,242,0.25)] hover:-translate-y-3 transition-all duration-500 overflow-hidden relative"
               >
@@ -879,7 +879,7 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer id="contact" className="bg-[#1A1A1A] text-white pt-48 md:pt-64 pb-12 md:pb-16 relative">
+      <footer id="contact" className="bg-[#1A1A1A] text-white pt-12 md:pt-16 pb-12 md:pb-16 relative">
         <div className="absolute inset-0 bg-royal-pattern opacity-5 pointer-events-none"></div>
         <BrushBorder position="top" color="#1A1A1A" />
 
@@ -887,7 +887,7 @@ export default function Home() {
 
           {/* Two Column Info Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 mb-24 md:mb-32">
-            
+
             {/* Left Column - Address & Contact */}
             <div className="flex flex-col items-center text-center">
               <div className="bg-[#E53E3E] rounded-full p-5 mb-6 shadow-lg shadow-red-500/20">
@@ -933,7 +933,7 @@ export default function Home() {
                   <Instagram className="w-6 h-6" />
                 </a>
                 <a href="#" className="bg-[#E53E3E] p-4 rounded-full hover:bg-white hover:text-[#E53E3E] transition-all shadow-lg text-white flex items-center justify-center">
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 15.71a6.34 6.34 0 0 0 6.27 6.36 6.35 6.35 0 0 0 6.25-6.36V7.94a8.17 8.17 0 0 0 4.38 1.25V5.75a4.79 4.79 0 0 1-2.31-.69z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 15.71a6.34 6.34 0 0 0 6.27 6.36 6.35 6.35 0 0 0 6.25-6.36V7.94a8.17 8.17 0 0 0 4.38 1.25V5.75a4.79 4.79 0 0 1-2.31-.69z" /></svg>
                 </a>
               </div>
             </div>
