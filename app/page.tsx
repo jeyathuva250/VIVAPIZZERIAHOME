@@ -722,11 +722,14 @@ export default function Home() {
       </section>
 
       {/* SECTION 3.5 - REVIEWS */}
-      <section id="reviews" className="py-20 md:py-32 bg-[#F9F9F9] relative overflow-hidden border-t border-gray-100">
+      <section id="reviews" className="py-32 md:py-48 bg-[#1A1A1A] relative overflow-hidden">
+        <div className="absolute inset-0 bg-royal-pattern opacity-5 pointer-events-none"></div>
+        <BrushBorder position="top" color="#1A1A1A" />
+        
         <div className="container mx-auto px-6 md:px-16">
-          <div className="text-center mb-16 md:mb-24">
+          <div className="text-center mb-16 md:mb-24 relative z-10">
             <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Guest Experiences</span>
-            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A]">What They Say</h2>
+            <h2 className="font-serif text-4xl md:text-6xl font-bold text-white">What They Say</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
@@ -779,8 +782,10 @@ export default function Home() {
 
 
       {/* SECTION 4 - SOCIAL FEEDS IFRAMES */}
-      <section className="py-20 md:py-32 bg-white relative overflow-hidden border-t border-gray-100">
-        <div className="container mx-auto px-6 md:px-16">
+      <section className="pt-32 pb-20 md:pt-48 md:pb-32 bg-white relative overflow-hidden">
+        <BrushBorder position="top" color="white" />
+        
+        <div className="container mx-auto px-6 md:px-16 relative z-10">
           <div className="text-center mb-16">
             <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Join Our Community</span>
             <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A]">Connect With Us</h2>
