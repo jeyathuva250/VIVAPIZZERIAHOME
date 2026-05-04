@@ -270,9 +270,8 @@ export default function Home() {
                   initial: { y: 0 },
                   hover: { y: -10 }
                 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, type: "spring", stiffness: 300 }}
-                className="relative p-8 flex flex-col items-center text-center transition-all duration-500 group"
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="relative p-8 flex flex-col items-center text-center group"
               >
                 {/* Highlight Background (Visible on Hover) */}
                 <motion.div
@@ -723,10 +722,16 @@ export default function Home() {
 
       {/* SECTION 3.5 - REVIEWS */}
       <section id="reviews" className="pt-8 pb-32 md:pt-12 md:pb-40 bg-[#1A1A1A] relative">
-        <div className="absolute inset-0 bg-royal-pattern opacity-5 pointer-events-none"></div>
         <BrushBorder position="top" color="#1A1A1A" />
 
-        <div className="container mx-auto px-6 md:px-16">
+        {/* PARALLAX BACKGROUND LAYERS (Same as Hero) */}
+        <motion.div style={{ y: backgroundY }} className="absolute inset-0 bg-royal-pattern opacity-10 pointer-events-none"></motion.div>
+
+        {/* Top & Bottom Legibility Gradients */}
+        <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#1A1A1A]/80 to-transparent z-0 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#1A1A1A]/80 to-transparent z-0 pointer-events-none"></div>
+
+        <div className="container mx-auto px-6 md:px-16 relative z-10">
           <div className="text-center mb-16 md:mb-24 relative z-10">
             <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Guest Experiences</span>
             <h2 className="font-serif text-4xl md:text-6xl font-bold text-white">What They Say</h2>
