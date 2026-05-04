@@ -1,0 +1,32 @@
+<svg width="1440" height="200" viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="brush-1" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" seed="1" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" />
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+    </filter>
+    <filter id="brush-2" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="4" seed="2" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" />
+    </filter>
+    <filter id="brush-3" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="2" seed="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" />
+    </filter>
+  </defs>
+  
+  <g opacity="0.1" filter="url(#brush-3)">
+    <path d="M-50 20 H1490 V140 C1100 170 900 100 700 130 C500 160 300 100 100 130 C0 140 -50 135 -50 140 Z" fill="currentColor" />
+  </g>
+  
+  <g opacity="0.3" filter="url(#brush-2)">
+    <path d="M-50 10 H1490 V130 C1200 160 1000 110 800 140 C600 170 400 110 200 140 C100 155 0 145 -50 150 Z" fill="currentColor" />
+  </g>
+  
+  <g filter="url(#brush-1)">
+    <path d="M-50 0 H1490 V150 C1240 180 1040 120 840 150 C640 180 440 120 240 150 C140 165 40 155 -50 160 Z" fill="currentColor" />
+  </g>
+  
+  <!-- Clean top cover -->
+  <rect x="-50" y="0" width="1540" height="10" fill="currentColor" />
+</svg>

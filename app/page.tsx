@@ -5,6 +5,8 @@ import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePresence } from "framer-motion";
 import { Star, Instagram, Facebook, ArrowRight, MapPin, Phone, Clock, Plus, GlassWater, Wine, Pizza as PizzaIcon, Utensils } from "lucide-react";
 import Link from "next/link";
+import { BrushBorder } from "./components/BrushBorder";
+
 
 type Category = "Pizza" | "Pasta" | "Beverages" | "Cocktails";
 
@@ -40,7 +42,7 @@ export default function Home() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 80);
     };
-    
+
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
@@ -50,7 +52,7 @@ export default function Home() {
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("mousemove", handleMouseMove);
-    
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
@@ -83,20 +85,19 @@ export default function Home() {
       <section ref={heroRef} className="relative min-h-[125vh] flex flex-col bg-white">
         {/* LOCALIZED STICKY NAVBAR */}
         <header
-          className={`sticky top-0 left-0 w-full z-50 transition-all duration-700 ${
-            isScrolled ? "bg-white/95 backdrop-blur-md shadow-md py-4" : "bg-transparent py-10"
-          }`}
+          className={`sticky top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? "bg-white/95 backdrop-blur-md shadow-md py-4" : "bg-transparent py-10"
+            }`}
         >
           <div className="container mx-auto px-8 md:px-16 flex justify-between items-center">
             <Link href="/" className={`font-serif text-3xl font-bold tracking-tight transition-colors duration-700 relative z-10 ${isScrolled ? "text-[#1A1A1A]" : "text-white"}`}>
               VIVA<span className="text-[#E53E3E] ml-0.5">PIZZERIA</span>
             </Link>
-            
+
             <nav className="hidden xl:flex items-center gap-10">
               {["Best Sellers", "The Gallery", "Services", "Blog", "Our Story"].map((item) => (
-                <Link 
+                <Link
                   key={item}
-                  href={`#${item.toLowerCase().replace(/\s+/g, "")}`} 
+                  href={`#${item.toLowerCase().replace(/\s+/g, "")}`}
                   className={`text-[10px] font-black uppercase tracking-[0.25em] transition-all relative group ${isScrolled ? "text-[#6B6B6B]" : "text-white/80"} hover:text-[#E53E3E]`}
                 >
                   {item}
@@ -104,25 +105,24 @@ export default function Home() {
                 </Link>
               ))}
             </nav>
-            
-            <Link 
-              href="#reservation" 
-              className={`hidden md:inline-flex items-center justify-center border px-10 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all active:scale-[0.98] ${
-                isScrolled 
-                  ? "border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white" 
-                  : "border-white text-white hover:bg-white hover:text-black"
-              }`}
+
+            <Link
+              href="#reservation"
+              className={`hidden md:inline-flex items-center justify-center border px-10 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all active:scale-[0.98] ${isScrolled
+                ? "border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white"
+                : "border-white text-white hover:bg-white hover:text-black"
+                }`}
             >
               Reserve a Table
             </Link>
           </div>
         </header>
 
-        <div 
+        <div
           className="relative min-h-[110vh] w-full bg-[#0A0A0A] flex items-center -mt-32"
           style={{
-            WebkitMaskImage: "url('/rugged-brush.svg'), linear-gradient(to bottom, black, black)",
-            maskImage: "url('/rugged-brush.svg'), linear-gradient(to bottom, black, black)",
+            WebkitMaskImage: "url('/premium-brush.svg'), linear-gradient(to bottom, black, black)",
+            maskImage: "url('/premium-brush.svg'), linear-gradient(to bottom, black, black)",
             WebkitMaskSize: "100% 200px, 100% calc(100% - 200px)",
             maskSize: "100% 200px, 100% calc(100% - 200px)",
             WebkitMaskRepeat: "no-repeat",
@@ -133,37 +133,43 @@ export default function Home() {
         >
           {/* PARALLAX BACKGROUND LAYERS */}
           <motion.div style={{ y: backgroundY }} className="absolute inset-0 bg-royal-pattern opacity-10 -z-10"></motion.div>
-          
+
           {/* Top Legibility Gradient */}
           <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black/80 to-transparent z-0 pointer-events-none"></div>
-          
-          <motion.div 
+
+          <motion.div
             style={{ y: foregroundY, opacity: contentOpacity, scale: contentScale }}
             className="container mx-auto px-8 md:px-16 grid lg:grid-cols-2 gap-32 items-center pt-52 pb-32"
           >
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="max-w-2xl"
             >
               <div className="mb-12 flex flex-col gap-4">
-                <motion.span 
-                  className="text-[#E53E3E] text-sm md:text-base font-bold tracking-[0.4em] uppercase"
+                <motion.span
+                  className="text-[#E53E3E] text-sm md:text-base font-bold tracking-[0.5em] uppercase drop-shadow-[0_0_10px_rgba(229,62,62,0.3)]"
                 >
-                  HOT & FRESH
+                  SINCE 1994 • AUTHENTIC
                 </motion.span>
+
                 <div className="flex items-center gap-4">
                   <span className="h-px w-10 bg-[#E53E3E]"></span>
                   <span className="text-[#E53E3E] text-[11px] font-black uppercase tracking-[0.5em] font-sans">Est. 1994 • Napoli</span>
                 </div>
               </div>
-              
-              <h1 className="font-serif text-7xl md:text-[100px] leading-[0.9] mb-10 font-black tracking-tight text-white">
-                CHEESE <br />
-                <span className="italic font-normal text-[#E53E3E]">PIZZA</span>
+
+              <h1 className="font-serif text-7xl md:text-[110px] leading-[0.85] mb-12 font-black tracking-tighter text-white drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]">
+                THE ART OF <br />
+                <span className="italic font-normal text-[#E53E3E] drop-shadow-[0_0_20px_rgba(229,62,62,0.4)]">FIRE.</span>
               </h1>
               
+              <p className="text-white/60 text-lg md:text-xl font-serif italic mb-12 max-w-lg leading-relaxed">
+                "Mastering the alchemy of wood-fired flames and hand-kneaded tradition since 1994."
+              </p>
+
+
               <div className="flex flex-wrap gap-8 items-center">
                 <Link href="#reservation" className="bg-[#E53E3E] text-white px-14 py-6 text-[11px] font-bold uppercase tracking-[0.3em] hover:bg-[#C53030] transition-all shadow-[0_10px_40px_rgba(229,62,62,0.3)] active:scale-95 font-sans">
                   Order Now
@@ -174,16 +180,16 @@ export default function Home() {
               </div>
             </motion.div>
 
-            <motion.div 
-            style={{ x: imageX, y: imageY }}
-            initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 2 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="relative z-10"
-          >
-            <div className="royal-border p-3 md:p-6 bg-[#1A1A1A] shadow-[30px_30px_60px_rgba(0,0,0,0.5)] border-white/10">
-              <div className="relative aspect-[4/5] md:aspect-square overflow-hidden bg-[#0A0A0A]">
-                  <Image 
+            <motion.div
+              style={{ x: imageX, y: imageY }}
+              initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
+              animate={{ opacity: 1, scale: 1, rotate: 2 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="relative z-10"
+            >
+              <div className="royal-border p-3 md:p-6 bg-[#1A1A1A] shadow-[30px_30px_60px_rgba(0,0,0,0.5)] border-white/10">
+                <div className="relative aspect-[4/5] md:aspect-square overflow-hidden bg-[#0A0A0A]">
+                  <Image
                     src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200"
                     alt="Signature Pizza"
                     fill
@@ -200,21 +206,9 @@ export default function Home() {
 
       {/* SECTION 1.5 - BEST SELLERS */}
       <section id="bestsellers" className="py-32 bg-white relative">
-        {/* Top Rugged Transition */}
-        <div className="absolute top-0 left-0 w-full h-32 -translate-y-full pointer-events-none">
-          <div 
-            className="w-full h-full bg-white"
-            style={{
-              WebkitMaskImage: "url('/rugged-brush.svg')",
-              maskImage: "url('/rugged-brush.svg')",
-              WebkitMaskSize: "100% 100%",
-              maskSize: "100% 100%",
-              WebkitMaskRepeat: "no-repeat",
-              maskRepeat: "no-repeat",
-              transform: "rotate(180deg)"
-            }}
-          ></div>
-        </div>
+        {/* Top Premium Transition */}
+        <BrushBorder position="top" color="white" />
+
 
         <div className="container mx-auto px-8 md:px-16">
           <div className="text-center mb-24">
@@ -228,7 +222,7 @@ export default function Home() {
               { name: "BACON CHEESE", price: "$8.90 - $12.90", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=600" },
               { name: "PEPPERONI", price: "$17.40 - $20.40", img: "https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?q=80&w=600" }
             ].map((pizza, i) => (
-              <motion.div 
+              <motion.div
                 key={pizza.name}
                 initial="initial"
                 whileHover="hover"
@@ -241,61 +235,81 @@ export default function Home() {
                 className="relative p-8 flex flex-col items-center text-center transition-all duration-500 group"
               >
                 {/* Highlight Background (Visible on Hover) */}
-                <motion.div 
+                <motion.div
                   variants={{
                     initial: { opacity: 0, scale: 0.9, rotate: -5 },
-                    hover: { opacity: 1, scale: 1.15, rotate: 2 }
+                    hover: { opacity: 1, scale: 1.05, rotate: 0 }
                   }}
-                  className="absolute inset-0 bg-[#E53E3E] -z-10" 
+                  className="absolute -inset-6 bg-[#B53310] -z-10"
                   style={{
-                    WebkitMaskImage: "url('/rugged-brush.svg')",
-                    maskImage: "url('/rugged-brush.svg')",
+                    WebkitMaskImage: "url('/card-mask.svg')",
+                    maskImage: "url('/card-mask.svg')",
                     WebkitMaskSize: "100% 100%",
                     maskSize: "100% 100%",
+                    WebkitMaskRepeat: "no-repeat",
+                    maskRepeat: "no-repeat",
                   }}
                 ></motion.div>
 
+                {/* Heart Icon (Visible on Hover) */}
+                <motion.div
+                  variants={{
+                    initial: { opacity: 0 },
+                    hover: { opacity: 1 }
+                  }}
+                  className="absolute top-4 right-4 text-white"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                    <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+                  </svg>
+                </motion.div>
+
+
                 <div className="relative w-48 h-48 mb-8">
-                  <Image 
-                    src={pizza.img} 
-                    alt={pizza.name} 
-                    fill 
+                  <Image
+                    src={pizza.img}
+                    alt={pizza.name}
+                    fill
                     sizes="(max-width: 768px) 100vw, 25vw"
                     className="object-cover rounded-full shadow-2xl group-hover:rotate-12 transition-transform duration-700"
                   />
                 </div>
-                
-                <motion.h3 
+
+                <motion.h3
                   variants={{ initial: { color: "#1A1A1A" }, hover: { color: "#FFFFFF" } }}
                   className="font-poster text-xl mb-3 tracking-tight"
                 >
                   {pizza.name}
                 </motion.h3>
-                
-                <motion.p 
+
+                <motion.p
                   variants={{ initial: { color: "#6B6B6B" }, hover: { color: "rgba(255,255,255,0.8)" } }}
                   className="text-xs font-serif italic mb-6 px-4"
                 >
                   Cherry tomatoes, fresh tomato, basil drizzle & mozzarella
                 </motion.p>
-                
-                <motion.div 
-                  variants={{ initial: { color: "#E53E3E" }, hover: { color: "#FFFFFF" } }}
+
+                <motion.div
+                  variants={{ initial: { color: "#E53E3E" }, hover: { color: "#F59E0B" } }}
                   className="font-poster text-lg mb-8"
                 >
                   {pizza.price}
                 </motion.div>
-                
-                <motion.button 
+
+
+                <motion.button
                   variants={{
-                    initial: { backgroundColor: "#E53E3E", color: "#FFFFFF" },
-                    hover: { backgroundColor: "#FFFFFF", color: "#E53E3E" }
+                    initial: { backgroundColor: "#F59E0B", color: "#FFFFFF" },
+                    hover: { backgroundColor: "#6BA333", color: "#FFFFFF" }
                   }}
-                  className="flex items-center gap-2 px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all"
+                  className="flex items-center gap-2 px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all"
                 >
-                  <PizzaIcon className="w-3.5 h-3.5" />
-                  View Menu
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 rounded-full border border-white p-0.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                  VIEW CART
                 </motion.button>
+
               </motion.div>
             ))}
           </div>
@@ -307,29 +321,20 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Bottom Rugged Transition */}
-        <div className="absolute bottom-0 left-0 w-full h-32 translate-y-full pointer-events-none z-10">
-          <div 
-            className="w-full h-full bg-white"
-            style={{
-              WebkitMaskImage: "url('/rugged-brush.svg')",
-              maskImage: "url('/rugged-brush.svg')",
-              WebkitMaskSize: "100% 100%",
-              maskSize: "100% 100%",
-              WebkitMaskRepeat: "no-repeat",
-              maskRepeat: "no-repeat",
-            }}
-          ></div>
-        </div>
+        {/* Bottom Premium Transition */}
+        <BrushBorder position="bottom" color="white" />
+
       </section>
 
       {/* SECTION 2 - THE GALLERY (FILTERED) */}
-      <section id="thegallery" className="py-40 bg-white">
+      <section id="thegallery" className="py-40 bg-white relative">
+        <BrushBorder position="top" color="white" />
+
         <div className="container mx-auto px-8 md:px-16">
           <div className="text-center mb-24">
             <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-6 block">The Curated Selections</span>
             <h2 className="font-serif text-6xl font-bold mb-12">Gastronomic Exhibits</h2>
-            
+
             {/* Category Navigation */}
             <div className="flex flex-wrap justify-center gap-8 md:gap-16">
               {[
@@ -341,13 +346,11 @@ export default function Home() {
                 <button
                   key={cat.name}
                   onClick={() => setActiveCategory(cat.name as Category)}
-                  className={`flex flex-col items-center gap-4 group transition-all ${
-                    activeCategory === cat.name ? "text-[#E53E3E]" : "text-[#B0B0B0] hover:text-[#1A1A1A]"
-                  }`}
+                  className={`flex flex-col items-center gap-4 group transition-all ${activeCategory === cat.name ? "text-[#E53E3E]" : "text-[#B0B0B0] hover:text-[#1A1A1A]"
+                    }`}
                 >
-                  <div className={`w-16 h-16 rounded-full border flex items-center justify-center transition-all duration-500 ${
-                    activeCategory === cat.name ? "border-[#E53E3E] bg-[#FDE8E8]" : "border-[#F0F0F0] group-hover:border-[#1A1A1A]"
-                  }`}>
+                  <div className={`w-16 h-16 rounded-full border flex items-center justify-center transition-all duration-500 ${activeCategory === cat.name ? "border-[#E53E3E] bg-[#FDE8E8]" : "border-[#F0F0F0] group-hover:border-[#1A1A1A]"
+                    }`}>
                     <cat.icon className={`w-6 h-6 ${activeCategory === cat.name ? "text-[#E53E3E]" : "text-gray-400 group-hover:text-[#1A1A1A]"}`} />
                   </div>
                   <span className="text-[10px] font-black uppercase tracking-[0.3em]">{cat.name}</span>
@@ -360,13 +363,13 @@ export default function Home() {
           </div>
 
           {/* Filtered Gallery Grid */}
-          <motion.div 
+          <motion.div
             layout
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 min-h-[600px]"
           >
             <AnimatePresence mode="popLayout">
               {filteredDishes.map((dish, index) => (
-                <motion.div 
+                <motion.div
                   key={dish.name}
                   layout
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -376,15 +379,15 @@ export default function Home() {
                   className="group relative overflow-hidden bg-white shadow-lg"
                 >
                   <div className="relative aspect-[4/5] overflow-hidden">
-                    <Image 
-                      src={dish.image} 
-                      alt={dish.name} 
-                      fill 
+                    <Image
+                      src={dish.image}
+                      alt={dish.name}
+                      fill
                       className="object-cover transition-transform duration-1000 group-hover:scale-110"
                     />
                     {/* Royal Labeling */}
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500"></div>
-                    
+
                     <div className="absolute inset-0 p-10 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
                       <span className="text-[#E53E3E] text-[9px] font-black uppercase tracking-[0.5em] mb-2 block">Premium Selection</span>
                       <h3 className="text-white font-serif text-3xl font-bold mb-4">{dish.name}</h3>
@@ -396,7 +399,7 @@ export default function Home() {
                       </button>
                     </div>
                   </div>
-                  
+
                   {/* Outer Frame Decoration */}
                   <div className="absolute inset-4 border border-white/0 group-hover:border-white/20 pointer-events-none transition-all duration-500"></div>
                 </motion.div>
@@ -410,32 +413,22 @@ export default function Home() {
             </button>
           </div>
         </div>
+        <BrushBorder position="bottom" color="white" />
       </section>
+
 
       {/* SECTION 2.5 - SERVICES */}
       <section id="services" className="py-40 bg-white relative overflow-hidden">
-        {/* Top Rugged Transition */}
-        <div className="absolute top-0 left-0 w-full h-32 -translate-y-1/2 pointer-events-none z-10">
-          <div 
-            className="w-full h-full bg-white"
-            style={{
-              WebkitMaskImage: "url('/rugged-brush.svg')",
-              maskImage: "url('/rugged-brush.svg')",
-              WebkitMaskSize: "100% 100%",
-              maskSize: "100% 100%",
-              WebkitMaskRepeat: "no-repeat",
-              maskRepeat: "no-repeat",
-              transform: "rotate(180deg)"
-            }}
-          ></div>
-        </div>
+        {/* Top Premium Transition */}
+        <BrushBorder position="top" color="white" />
+
 
         {/* Decorative Corner Pizza */}
         <div className="absolute -top-20 -right-20 w-80 h-80 opacity-20 pointer-events-none rotate-12">
-          <Image 
-            src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=800" 
-            alt="Decorative Pizza" 
-            fill 
+          <Image
+            src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=800"
+            alt="Decorative Pizza"
+            fill
             className="object-contain"
           />
         </div>
@@ -453,18 +446,18 @@ export default function Home() {
             {/* Left Services */}
             <div className="space-y-24 order-2 lg:order-1">
               {[
-                { 
-                  title: "BIRTHDAY PARTY", 
-                  icon: <PizzaIcon className="w-8 h-8" />, 
+                {
+                  title: "BIRTHDAY PARTY",
+                  icon: <PizzaIcon className="w-8 h-8" />,
                   desc: "Create unforgettable memories with our bespoke birthday packages, featuring wood-fired pizzas and custom desserts."
                 },
-                { 
-                  title: "CHARITY EVENTS", 
-                  icon: <Star className="w-8 h-8" />, 
+                {
+                  title: "CHARITY EVENTS",
+                  icon: <Star className="w-8 h-8" />,
                   desc: "We are committed to our community. Partner with us for your next charity gala or local fundraising event."
                 }
               ].map((service, i) => (
-                <motion.div 
+                <motion.div
                   key={service.title}
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -484,7 +477,7 @@ export default function Home() {
             </div>
 
             {/* Central Chef Image */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -493,10 +486,10 @@ export default function Home() {
             >
               <div className="relative w-full max-w-md aspect-[3/4] border-[12px] border-[#E53E3E] p-4 bg-white shadow-2xl">
                 <div className="relative w-full h-full bg-gray-100 overflow-hidden">
-                  <Image 
-                    src="https://images.unsplash.com/photo-1581299894007-aaa50297cf16?q=80&w=800" 
-                    alt="Our Master Chef" 
-                    fill 
+                  <Image
+                    src="https://images.unsplash.com/photo-1581299894007-aaa50297cf16?q=80&w=800"
+                    alt="Our Master Chef"
+                    fill
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
                   />
@@ -511,18 +504,18 @@ export default function Home() {
             {/* Right Services */}
             <div className="space-y-24 order-3 lg:order-3">
               {[
-                { 
-                  title: "EVENT PARTY", 
-                  icon: <Clock className="w-8 h-8" />, 
+                {
+                  title: "EVENT PARTY",
+                  icon: <Clock className="w-8 h-8" />,
                   desc: "From corporate gatherings to intimate soirées, our team handles every detail of your event catering."
                 },
-                { 
-                  title: "PRIVATE DINING", 
-                  icon: <Wine className="w-8 h-8" />, 
+                {
+                  title: "PRIVATE DINING",
+                  icon: <Wine className="w-8 h-8" />,
                   desc: "Enjoy an exclusive culinary experience in our private suites, tailored precisely to your palate."
                 }
               ].map((service, i) => (
-                <motion.div 
+                <motion.div
                   key={service.title}
                   initial={{ opacity: 0, x: 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -543,39 +536,16 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Bottom Rugged Transition */}
-        <div className="absolute bottom-0 left-0 w-full h-32 translate-y-1/2 pointer-events-none z-10">
-          <div 
-            className="w-full h-full bg-white"
-            style={{
-              WebkitMaskImage: "url('/rugged-brush.svg')",
-              maskImage: "url('/rugged-brush.svg')",
-              WebkitMaskSize: "100% 100%",
-              maskSize: "100% 100%",
-              WebkitMaskRepeat: "no-repeat",
-              maskRepeat: "no-repeat",
-            }}
-          ></div>
-        </div>
+        {/* Bottom Premium Transition */}
+        <BrushBorder position="bottom" color="white" />
+
       </section>
 
       {/* SECTION 2.7 - RECENT POSTS */}
       <section id="blog" className="py-40 bg-white relative">
-        {/* Top Rugged Transition */}
-        <div className="absolute top-0 left-0 w-full h-32 -translate-y-1/2 pointer-events-none z-10">
-          <div 
-            className="w-full h-full bg-white"
-            style={{
-              WebkitMaskImage: "url('/rugged-brush.svg')",
-              maskImage: "url('/rugged-brush.svg')",
-              WebkitMaskSize: "100% 100%",
-              maskSize: "100% 100%",
-              WebkitMaskRepeat: "no-repeat",
-              maskRepeat: "no-repeat",
-              transform: "rotate(180deg)"
-            }}
-          ></div>
-        </div>
+        {/* Top Premium Transition */}
+        <BrushBorder position="top" color="white" />
+
         <div className="container mx-auto px-8 md:px-16">
           <div className="mb-24">
             <span className="font-brush text-[#E53E3E] text-3xl mb-4 block">Quality Meal</span>
@@ -587,16 +557,16 @@ export default function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             {/* Featured Post (Left) */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="relative aspect-[4/5] overflow-hidden shadow-2xl group"
             >
-              <Image 
-                src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?q=80&w=1200" 
-                alt="Featured Recipe" 
-                fill 
+              <Image
+                src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?q=80&w=1200"
+                alt="Featured Recipe"
+                fill
                 className="object-cover transition-transform duration-1000 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
@@ -616,7 +586,7 @@ export default function Home() {
                   desc: "From classic Tiramisu to our modern chocolate orbits, discover the sweets that define our heritage."
                 }
               ].map((post, i) => (
-                <motion.div 
+                <motion.div
                   key={post.title}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -625,10 +595,10 @@ export default function Home() {
                   className="flex flex-col md:flex-row gap-8 items-center group"
                 >
                   <div className="relative w-full md:w-52 aspect-square flex-shrink-0 overflow-hidden shadow-xl">
-                    <Image 
-                      src={post.img} 
-                      alt={post.title} 
-                      fill 
+                    <Image
+                      src={post.img}
+                      alt={post.title}
+                      fill
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                   </div>
@@ -647,14 +617,14 @@ export default function Home() {
           </div>
 
           {/* Floating Ingredients Decoration */}
-          <motion.div 
+          <motion.div
             style={{ y: foregroundY }}
             className="absolute bottom-20 right-10 w-96 h-96 pointer-events-none opacity-80 hidden xl:block"
           >
-            <Image 
-              src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?q=80&w=800" 
-              alt="Floating Ingredients" 
-              fill 
+            <Image
+              src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?q=80&w=800"
+              alt="Floating Ingredients"
+              fill
               className="object-contain"
             />
           </motion.div>
@@ -662,7 +632,7 @@ export default function Home() {
 
         {/* NEWSLETTER BANNER */}
         <div className="mt-40 container mx-auto px-8 md:px-16">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -673,9 +643,9 @@ export default function Home() {
               <p className="text-gray-500 text-sm font-serif italic">Sign up today for our newsletter and receive 15% OFF on your first purchase.</p>
             </div>
             <div className="flex w-full lg:w-auto gap-0 shadow-lg">
-              <input 
-                type="email" 
-                placeholder="Type Your Email" 
+              <input
+                type="email"
+                placeholder="Type Your Email"
                 className="flex-1 lg:w-80 px-6 py-5 bg-[#F9F9F9] border-none focus:ring-2 focus:ring-[#E53E3E] text-sm font-serif outline-none"
               />
               <button className="bg-[#E53E3E] text-white px-12 py-5 text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#C53030] transition-all">
@@ -685,28 +655,19 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Bottom Rugged Transition */}
-        <div className="absolute bottom-0 left-0 w-full h-32 translate-y-1/2 pointer-events-none z-10">
-          <div 
-            className="w-full h-full bg-white"
-            style={{
-              WebkitMaskImage: "url('/rugged-brush.svg')",
-              maskImage: "url('/rugged-brush.svg')",
-              WebkitMaskSize: "100% 100%",
-              maskSize: "100% 100%",
-              WebkitMaskRepeat: "no-repeat",
-              maskRepeat: "no-repeat",
-            }}
-          ></div>
-        </div>
+        {/* Bottom Premium Transition */}
+        <BrushBorder position="bottom" color="white" />
+
       </section>
 
 
       {/* SECTION 3 - STORY */}
       <section id="ourstory" className="py-40 bg-white relative overflow-hidden">
+        <BrushBorder position="top" color="white" />
+
         <div className="absolute inset-0 bg-royal-pattern opacity-5"></div>
         <div className="container mx-auto px-8 md:px-16 grid lg:grid-cols-2 gap-32 items-center relative z-10">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -719,7 +680,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -744,10 +705,16 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
+
       </section>
 
+
       {/* FOOTER */}
-      <footer id="contact" className="bg-[#1A1A1A] text-white pt-32 pb-16">
+      <footer id="contact" className="bg-[#1A1A1A] text-white pt-40 pb-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-royal-pattern opacity-5 pointer-events-none"></div>
+        <BrushBorder position="top" color="#1A1A1A" />
+
+
         <div className="container mx-auto px-8 md:px-16">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-24 mb-32">
             <div className="md:col-span-2">
@@ -762,7 +729,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            
+
             <div>
               <h4 className="text-[10px] font-black uppercase tracking-[0.4em] mb-10 text-[#E53E3E]">Explore</h4>
               <ul className="space-y-6">
@@ -773,7 +740,7 @@ export default function Home() {
                 ))}
               </ul>
             </div>
-            
+
             <div>
               <h4 className="text-[10px] font-black uppercase tracking-[0.4em] mb-10 text-[#E53E3E]">The Estate</h4>
               <p id="reservation" className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-300">
@@ -782,7 +749,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          
+
           <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[9px] font-bold uppercase tracking-[0.4em] text-gray-500">
             <p>© 2024 Viva Pizzeria Group — The Art of Fire.</p>
             <div className="flex gap-12">
