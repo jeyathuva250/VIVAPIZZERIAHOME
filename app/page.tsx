@@ -678,7 +678,6 @@ export default function Home() {
 
       {/* SECTION 3 - STORY */}
       <section id="ourstory" className="py-20 md:py-32 bg-white relative overflow-hidden">
-
         <div className="absolute inset-0 bg-royal-pattern opacity-5"></div>
         <div className="container mx-auto px-6 md:px-16 grid lg:grid-cols-2 gap-16 md:gap-32 items-center relative z-10">
 
@@ -720,7 +719,62 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
+      </section>
 
+      {/* SECTION 3.5 - REVIEWS */}
+      <section id="reviews" className="py-20 md:py-32 bg-[#F9F9F9] relative overflow-hidden border-t border-gray-100">
+        <div className="container mx-auto px-6 md:px-16">
+          <div className="text-center mb-16 md:mb-24">
+            <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Guest Experiences</span>
+            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A]">What They Say</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            {[
+              {
+                text: "The best Neapolitan pizza outside of Italy. The crust is perfectly blistered, and the ingredients are exceptionally fresh.",
+                name: "Alessandro Rossi",
+                role: "Food Critic",
+                rating: 5
+              },
+              {
+                text: "A truly cinematic dining experience. The ambiance, the wine selection, and the Truffle Pasta are absolutely out of this world.",
+                name: "Sophia Carter",
+                role: "Local Guide",
+                rating: 5
+              },
+              {
+                text: "We hosted our corporate event here and the service was impeccable. Every guest left amazed by the quality of the food.",
+                name: "Michael Chen",
+                role: "Event Coordinator",
+                rating: 5
+              }
+            ].map((review, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.2 }}
+                className="bg-white p-10 md:p-12 shadow-xl border-t-4 border-[#E53E3E] relative group hover:-translate-y-2 transition-transform duration-500"
+              >
+                <div className="text-[#E53E3E] flex gap-1 mb-6">
+                  {[...Array(review.rating)].map((_, j) => (
+                    <Star key={j} className="w-5 h-5 fill-current" />
+                  ))}
+                </div>
+                <p className="font-serif italic text-gray-600 text-lg leading-relaxed mb-8 relative z-10">"{review.text}"</p>
+                <div className="relative z-10">
+                  <h4 className="font-poster text-xl tracking-tight text-[#1A1A1A]">{review.name}</h4>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">{review.role}</span>
+                </div>
+                <div className="absolute top-8 right-8 text-gray-100 opacity-50 group-hover:text-[#E53E3E] group-hover:opacity-10 transition-colors duration-500">
+                  <svg className="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </section>
 
 
