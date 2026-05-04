@@ -724,6 +724,101 @@ export default function Home() {
       </section>
 
 
+      {/* SECTION 4 - SOCIAL FEEDS IFRAMES */}
+      <section className="py-20 md:py-32 bg-white relative overflow-hidden border-t border-gray-100">
+        <div className="container mx-auto px-6 md:px-16">
+          <div className="text-center mb-16">
+            <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Join Our Community</span>
+            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A]">Connect With Us</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-6xl mx-auto">
+            {/* Instagram Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <a 
+                href="https://www.instagram.com/vivapizzeriaandpastahouse/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block group bg-gradient-to-br from-[#f09433] via-[#e6683c] to-[#bc1888] rounded-3xl p-10 shadow-2xl hover:-translate-y-3 transition-all duration-500 overflow-hidden relative"
+              >
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+                <div className="relative z-10 flex flex-col items-center text-center">
+                  <div className="bg-white rounded-full p-5 mb-8 shadow-xl transform group-hover:scale-110 transition-transform duration-500">
+                    <Instagram className="w-10 h-10 text-[#e1306c]" />
+                  </div>
+                  <h3 className="font-serif text-3xl font-bold text-white mb-3">Instagram</h3>
+                  <p className="text-white/90 font-sans text-sm mb-8">@vivapizzeriaandpastahouse</p>
+                  <span className="inline-block border border-white text-white px-8 py-3 rounded-full text-[11px] font-bold uppercase tracking-widest group-hover:bg-white group-hover:text-[#bc1888] transition-colors shadow-lg">
+                    Follow Us
+                  </span>
+                </div>
+              </a>
+            </motion.div>
+
+            {/* TikTok Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <a 
+                href="https://www.tiktok.com/search?q=viva%20pizzeria&t=1744150773232" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block group bg-[#000000] rounded-3xl p-10 shadow-[0_20px_50px_rgba(37,244,238,0.15)] hover:shadow-[0_20px_50px_rgba(254,44,85,0.25)] hover:-translate-y-3 transition-all duration-500 overflow-hidden relative"
+              >
+                {/* TikTok Accents */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#fe2c55] rounded-full mix-blend-screen filter blur-[60px] opacity-40 group-hover:opacity-70 transition-opacity"></div>
+                <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#25f4ee] rounded-full mix-blend-screen filter blur-[60px] opacity-40 group-hover:opacity-70 transition-opacity"></div>
+                
+                <div className="relative z-10 flex flex-col items-center text-center">
+                  <div className="bg-white rounded-full p-5 mb-8 shadow-xl transform group-hover:scale-110 transition-transform duration-500">
+                    <svg className="w-10 h-10" viewBox="0 0 24 24" fill="black"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 15.71a6.34 6.34 0 0 0 6.27 6.36 6.35 6.35 0 0 0 6.25-6.36V7.94a8.17 8.17 0 0 0 4.38 1.25V5.75a4.79 4.79 0 0 1-2.31-.69z"/></svg>
+                  </div>
+                  <h3 className="font-serif text-3xl font-bold text-white mb-3">TikTok</h3>
+                  <p className="text-white/90 font-sans text-sm mb-8">Watch our kitchen in action</p>
+                  <span className="inline-block border border-white text-white px-8 py-3 rounded-full text-[11px] font-bold uppercase tracking-widest group-hover:bg-white group-hover:text-black transition-colors shadow-lg">
+                    Watch Now
+                  </span>
+                </div>
+              </a>
+            </motion.div>
+
+            {/* Facebook Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+            >
+              <a 
+                href="https://web.facebook.com/people/Viva-Pizzeria-and-Pasta/61564076226960/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block group bg-gradient-to-br from-[#1877F2] to-[#0b4d9e] rounded-3xl p-10 shadow-[0_20px_50px_rgba(24,119,242,0.25)] hover:-translate-y-3 transition-all duration-500 overflow-hidden relative"
+              >
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+                <div className="relative z-10 flex flex-col items-center text-center">
+                  <div className="bg-white rounded-full p-5 mb-8 shadow-xl transform group-hover:scale-110 transition-transform duration-500">
+                    <Facebook className="w-10 h-10 text-[#1877F2] fill-current" />
+                  </div>
+                  <h3 className="font-serif text-3xl font-bold text-white mb-3">Facebook</h3>
+                  <p className="text-white/90 font-sans text-sm mb-8">Join our local community</p>
+                  <span className="inline-block border border-white text-white px-8 py-3 rounded-full text-[11px] font-bold uppercase tracking-widest group-hover:bg-white group-hover:text-[#1877F2] transition-colors shadow-lg">
+                    Like Page
+                  </span>
+                </div>
+              </a>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* FOOTER */}
       <footer id="contact" className="bg-[#1A1A1A] text-white pt-48 md:pt-64 pb-12 md:pb-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-royal-pattern opacity-5 pointer-events-none"></div>
@@ -731,46 +826,77 @@ export default function Home() {
 
         <div className="container mx-auto px-6 md:px-16">
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-16 md:gap-24 mb-24 md:mb-32">
-            <div className="md:col-span-2">
-              <Link href="/" className="font-serif text-4xl font-bold mb-10 block tracking-tight">
-                VIVA<span className="text-[#E53E3E] ml-1">PIZZERIA</span>
-              </Link>
-              <div className="flex gap-8">
-                {[Instagram, Facebook].map((Icon, i) => (
-                  <a key={i} href="#" className="text-white hover:text-[#E53E3E] transition-colors" aria-label={`Follow us on ${i === 0 ? "Instagram" : "Facebook"}`}>
-                    <Icon className="w-5 h-5 stroke-[1.5px]" />
-                  </a>
-                ))}
+          {/* Two Column Info Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 mb-24 md:mb-32">
+            
+            {/* Left Column - Address & Contact */}
+            <div className="flex flex-col items-center text-center">
+              <div className="bg-[#E53E3E] rounded-full p-5 mb-6 shadow-lg shadow-red-500/20">
+                <MapPin className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-serif text-3xl font-bold mb-4 text-white">Address</h3>
+              <p className="text-gray-400 font-serif text-lg mb-16">
+                158 O'Connor Dr, East York, ON M4J 2S4
+              </p>
+
+              <div className="bg-[#E53E3E] rounded-full p-5 mb-6 shadow-lg shadow-red-500/20">
+                <Phone className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-serif text-3xl font-bold mb-4 text-white">Phone & Email</h3>
+              <p className="text-gray-400 font-serif text-lg leading-relaxed">
+                Phone: 416-282-6886<br />
+                Email: info@vivapizza.ca
+              </p>
+            </div>
+
+            {/* Right Column - Working Hours & Socials */}
+            <div className="flex flex-col items-center text-center">
+              <div className="bg-[#E53E3E] rounded-full p-5 mb-6 shadow-lg shadow-red-500/20">
+                <Clock className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-serif text-3xl font-bold mb-6 text-white">Working Hours</h3>
+              <ul className="text-gray-400 font-serif text-lg space-y-2 mb-12">
+                <li>Mon: Closed</li>
+                <li>Tue: 4:00pm – 10:00pm</li>
+                <li>Wed: 4:00pm – 10:00pm</li>
+                <li>Thu: 4:00pm – 10:00pm</li>
+                <li>Fri: 12:00pm – 10:00pm</li>
+                <li>Sun: 12:00pm – 10:00pm</li>
+                <li>Sat: 12:00pm – 10:00pm</li>
+              </ul>
+
+              {/* Social Icons */}
+              <div className="flex gap-4">
+                <a href="#" className="bg-[#E53E3E] p-4 rounded-full hover:bg-white hover:text-[#E53E3E] transition-all shadow-lg text-white">
+                  <Facebook className="w-6 h-6 fill-current" />
+                </a>
+                <a href="#" className="bg-[#E53E3E] p-4 rounded-full hover:bg-white hover:text-[#E53E3E] transition-all shadow-lg text-white">
+                  <Instagram className="w-6 h-6" />
+                </a>
+                <a href="#" className="bg-[#E53E3E] p-4 rounded-full hover:bg-white hover:text-[#E53E3E] transition-all shadow-lg text-white flex items-center justify-center">
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 15.71a6.34 6.34 0 0 0 6.27 6.36 6.35 6.35 0 0 0 6.25-6.36V7.94a8.17 8.17 0 0 0 4.38 1.25V5.75a4.79 4.79 0 0 1-2.31-.69z"/></svg>
+                </a>
               </div>
             </div>
 
-            <div>
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] mb-10 text-[#E53E3E]">Explore</h4>
-              <ul className="space-y-6">
-                {["Private Dining", "Gift Vouchers", "The Kitchen", "Career"].map(item => (
-                  <li key={item}>
-                    <Link href="#" className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-300 hover:text-white transition-colors">{item}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] mb-10 text-[#E53E3E]">The Estate</h4>
-              <p id="reservation" className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-300">
-                123 Via della Tradizione <br /> Napoli, Italy 80100 <br /><br />
-                reservations@vivapizzeria.it
-              </p>
-            </div>
           </div>
 
-          <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[9px] font-bold uppercase tracking-[0.4em] text-gray-500">
-            <p>© 2024 Viva Pizzeria Group — The Art of Fire.</p>
-            <div className="flex gap-12">
-              <Link href="#" className="hover:text-white transition-colors">Legal</Link>
-              <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
-            </div>
+          {/* Delivery Links */}
+          <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 mb-20 border-t border-white/5 pt-20">
+            <Link href="#reservation" className="text-[#E53E3E] font-bold text-lg flex items-center gap-2 hover:text-white transition-colors">
+              Order Now <ArrowRight className="w-5 h-5" />
+            </Link>
+            <span className="font-sans text-xl font-medium tracking-tight text-white">ORDER PICKUP</span>
+            <span className="font-sans text-2xl tracking-tight text-[#06C167]">Uber <span className="font-bold">Eats</span></span>
+            <span className="font-sans text-2xl font-bold tracking-tight text-[#FF3008]">DOORDASH</span>
+            <span className="font-sans text-2xl font-black italic tracking-tighter text-[#F36F21]">SKIP<span className="text-sm uppercase not-italic tracking-normal ml-1">THE DISHES</span></span>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-500 font-sans">
+            <p>vivapizzeria</p>
+            <p>Custom website designed by <a href="https://thebestmedia.com" target="_blank" rel="noopener noreferrer" className="text-[#E53E3E] hover:text-white transition-colors">thebestmedia.com</a></p>
+            <p>All rights reserved</p>
           </div>
         </div>
       </footer>
