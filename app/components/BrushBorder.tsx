@@ -18,8 +18,10 @@ export const BrushBorder: React.FC<BrushBorderProps> = ({
   
   return (
     <div 
-      className={`absolute ${isTop ? "top-0" : "bottom-0"} left-0 w-full h-40 pointer-events-none z-20 ${className}`}
+      className={`absolute left-0 w-full h-40 pointer-events-none z-20 ${className}`}
       style={{
+        top: isTop ? "-159px" : "auto",
+        bottom: !isTop ? "-159px" : "auto",
         backgroundColor: color,
         WebkitMaskImage: "url('/premium-brush.svg')",
         maskImage: "url('/premium-brush.svg')",
@@ -27,7 +29,7 @@ export const BrushBorder: React.FC<BrushBorderProps> = ({
         maskSize: "100% 100%",
         WebkitMaskRepeat: "no-repeat",
         maskRepeat: "no-repeat",
-        transform: `${isTop ? "rotate(180deg)" : "none"} translateY(${isTop ? "1px" : "-1px"})`,
+        transform: isTop ? "rotate(180deg)" : "none",
       }}
     />
   );

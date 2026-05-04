@@ -677,7 +677,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 3 - STORY */}
-      <section id="ourstory" className="py-20 md:py-32 bg-white relative overflow-hidden">
+      <section id="ourstory" className="pt-20 pb-40 md:pt-32 md:pb-56 bg-white relative overflow-hidden">
         <div className="absolute inset-0 bg-royal-pattern opacity-5"></div>
         <div className="container mx-auto px-6 md:px-16 grid lg:grid-cols-2 gap-16 md:gap-32 items-center relative z-10">
 
@@ -722,7 +722,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 3.5 - REVIEWS */}
-      <section id="reviews" className="py-32 md:py-48 bg-[#1A1A1A] relative overflow-hidden">
+      <section id="reviews" className="pt-48 pb-48 md:pt-64 md:pb-64 bg-[#1A1A1A] relative">
         <div className="absolute inset-0 bg-royal-pattern opacity-5 pointer-events-none"></div>
         <BrushBorder position="top" color="#1A1A1A" />
         
@@ -782,7 +782,7 @@ export default function Home() {
 
 
       {/* SECTION 4 - SOCIAL FEEDS IFRAMES */}
-      <section className="pt-32 pb-20 md:pt-48 md:pb-32 bg-white relative overflow-hidden">
+      <section className="pt-48 pb-40 md:pt-64 md:pb-56 bg-white relative">
         <BrushBorder position="top" color="white" />
         
         <div className="container mx-auto px-6 md:px-16 relative z-10">
@@ -879,7 +879,7 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer id="contact" className="bg-[#1A1A1A] text-white pt-48 md:pt-64 pb-12 md:pb-16 relative overflow-hidden">
+      <footer id="contact" className="bg-[#1A1A1A] text-white pt-48 md:pt-64 pb-12 md:pb-16 relative">
         <div className="absolute inset-0 bg-royal-pattern opacity-5 pointer-events-none"></div>
         <BrushBorder position="top" color="#1A1A1A" />
 
