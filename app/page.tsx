@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePresence } from "framer-motion";
-import { Star, Instagram, Facebook, ArrowRight, MapPin, Phone, Clock, Plus, GlassWater, Wine, Pizza as PizzaIcon, Utensils } from "lucide-react";
+import { Star, Instagram, Facebook, ArrowRight, MapPin, Phone, Clock, Plus, GlassWater, Wine, Pizza as PizzaIcon, Utensils, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { BrushBorder } from "./components/BrushBorder";
 
@@ -13,6 +13,7 @@ type Category = "Pizza" | "Pasta" | "Beverages" | "Cocktails";
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeCategory, setActiveCategory] = useState<Category>("Pizza");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Mouse parallax values
   const mouseX = useMotionValue(0);
@@ -88,8 +89,8 @@ export default function Home() {
           className={`sticky top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? "bg-white/95 backdrop-blur-md shadow-md py-4" : "bg-transparent py-10"
             }`}
         >
-          <div className="container mx-auto px-8 md:px-16 flex justify-between items-center">
-            <Link href="/" className={`font-serif text-3xl font-bold tracking-tight transition-colors duration-700 relative z-10 ${isScrolled ? "text-[#1A1A1A]" : "text-white"}`}>
+          <div className="container mx-auto px-6 md:px-16 flex justify-between items-center">
+            <Link href="/" className={`font-serif text-3xl font-bold tracking-tight transition-colors duration-700 relative z-10 ${isScrolled || isMobileMenuOpen ? "text-[#1A1A1A]" : "text-white"}`}>
               VIVA<span className="text-[#E53E3E] ml-0.5">PIZZERIA</span>
             </Link>
 
@@ -115,7 +116,46 @@ export default function Home() {
             >
               Reserve a Table
             </Link>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              className={`xl:hidden relative z-10 transition-colors ${isScrolled || isMobileMenuOpen ? "text-[#1A1A1A]" : "text-white"}`}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+            </button>
           </div>
+
+          {/* Mobile Menu Panel */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="absolute top-full left-0 w-full bg-white shadow-xl py-8 px-6 flex flex-col gap-6 xl:hidden border-t border-gray-100"
+              >
+                {["Best Sellers", "The Gallery", "Services", "Blog", "Our Story"].map((item) => (
+                  <Link
+                    key={item}
+                    href={`#${item.toLowerCase().replace(/\s+/g, "")}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-base font-black uppercase tracking-[0.2em] text-[#1A1A1A] hover:text-[#E53E3E] border-b border-gray-100 pb-4"
+                  >
+                    {item}
+                  </Link>
+                ))}
+                <Link
+                  href="#reservation"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="inline-flex items-center justify-center bg-[#E53E3E] text-white px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] mt-2 shadow-lg"
+                >
+                  Reserve a Table
+                </Link>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </header>
 
         <div
@@ -139,38 +179,39 @@ export default function Home() {
 
           <motion.div
             style={{ y: foregroundY, opacity: contentOpacity, scale: contentScale }}
-            className="container mx-auto px-8 md:px-16 grid lg:grid-cols-2 gap-32 items-center pt-52 pb-32"
+            className="container mx-auto px-6 md:px-16 grid lg:grid-cols-2 gap-16 md:gap-32 items-center pt-32 md:pt-52 pb-24 md:pb-32"
           >
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="max-w-2xl"
+              className="max-w-2xl text-center lg:text-left flex flex-col items-center lg:items-start"
             >
-              <div className="mb-12 flex flex-col gap-4">
+              <div className="mb-8 md:mb-12 flex flex-col gap-4 items-center lg:items-start">
                 <motion.span
-                  className="text-[#E53E3E] text-sm md:text-base font-bold tracking-[0.5em] uppercase drop-shadow-[0_0_10px_rgba(229,62,62,0.3)]"
+                  className="text-[#E53E3E] text-xs md:text-sm lg:text-base font-bold tracking-[0.5em] uppercase drop-shadow-[0_0_10px_rgba(229,62,62,0.3)]"
                 >
                   SINCE 1994 • AUTHENTIC
                 </motion.span>
 
                 <div className="flex items-center gap-4">
                   <span className="h-px w-10 bg-[#E53E3E]"></span>
-                  <span className="text-[#E53E3E] text-[11px] font-black uppercase tracking-[0.5em] font-sans">Est. 1994 • Napoli</span>
+                  <span className="text-[#E53E3E] text-[9px] md:text-[11px] font-black uppercase tracking-[0.5em] font-sans">Est. 1994 • Napoli</span>
+                  <span className="h-px w-10 bg-[#E53E3E] lg:hidden"></span>
                 </div>
               </div>
 
-              <h1 className="font-serif text-7xl md:text-[110px] leading-[0.85] mb-12 font-black tracking-tighter text-white drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]">
+              <h1 className="font-serif text-6xl md:text-8xl lg:text-[110px] leading-[0.9] lg:leading-[0.85] mb-8 md:mb-12 font-black tracking-tighter text-white drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]">
                 THE ART OF <br />
                 <span className="italic font-normal text-[#E53E3E] drop-shadow-[0_0_20px_rgba(229,62,62,0.4)]">FIRE.</span>
               </h1>
               
-              <p className="text-white/60 text-lg md:text-xl font-serif italic mb-12 max-w-lg leading-relaxed">
+              <p className="text-white/60 text-base md:text-lg lg:text-xl font-serif italic mb-10 md:mb-12 max-w-lg leading-relaxed">
                 "Mastering the alchemy of wood-fired flames and hand-kneaded tradition since 1994."
               </p>
 
+              <div className="flex flex-wrap gap-6 md:gap-8 items-center justify-center lg:justify-start">
 
-              <div className="flex flex-wrap gap-8 items-center">
                 <Link href="#reservation" className="bg-[#E53E3E] text-white px-14 py-6 text-[11px] font-bold uppercase tracking-[0.3em] hover:bg-[#C53030] transition-all shadow-[0_10px_40px_rgba(229,62,62,0.3)] active:scale-95 font-sans">
                   Order Now
                 </Link>
@@ -205,17 +246,16 @@ export default function Home() {
       </section>
 
       {/* SECTION 1.5 - BEST SELLERS */}
-      <section id="bestsellers" className="py-32 bg-white relative">
-        {/* Top Premium Transition */}
-        <BrushBorder position="top" color="white" />
-
-
-        <div className="container mx-auto px-8 md:px-16">
-          <div className="text-center mb-24">
-            <h2 className="font-brush text-5xl md:text-6xl text-[#E53E3E] tracking-tight">OUR BEST SELLER ITEMS</h2>
+      <section id="bestsellers" className="py-20 md:py-32 bg-white relative">
+        <div className="container mx-auto px-6 md:px-16">
+          <div className="text-center mb-16 md:mb-24">
+            <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Chef's Recommendations</span>
+            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A]">Our Best Sellers</h2>
           </div>
 
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
             {[
               { name: "HALF & HALF PIZZA", price: "$17.40 - $20.40", img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=600" },
               { name: "MARGHERITA", price: "$8.40 - $20.40", img: "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?q=80&w=600" },
@@ -320,20 +360,15 @@ export default function Home() {
             </button>
           </div>
         </div>
-
-        {/* Bottom Premium Transition */}
-        <BrushBorder position="bottom" color="white" />
-
       </section>
 
       {/* SECTION 2 - THE GALLERY (FILTERED) */}
-      <section id="thegallery" className="py-40 bg-white relative">
-        <BrushBorder position="top" color="white" />
+      <section id="thegallery" className="py-20 md:py-32 bg-white relative">
+        <div className="container mx-auto px-6 md:px-16">
 
-        <div className="container mx-auto px-8 md:px-16">
-          <div className="text-center mb-24">
-            <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-6 block">The Curated Selections</span>
-            <h2 className="font-serif text-6xl font-bold mb-12">Gastronomic Exhibits</h2>
+          <div className="text-center mb-16 md:mb-24">
+            <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">The Curated Selections</span>
+            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A]">Gastronomic Exhibits</h2>
 
             {/* Category Navigation */}
             <div className="flex flex-wrap justify-center gap-8 md:gap-16">
@@ -413,18 +448,12 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <BrushBorder position="bottom" color="white" />
       </section>
 
-
       {/* SECTION 2.5 - SERVICES */}
-      <section id="services" className="py-40 bg-white relative overflow-hidden">
-        {/* Top Premium Transition */}
-        <BrushBorder position="top" color="white" />
-
-
+      <section id="services" className="py-20 md:py-32 bg-white relative overflow-hidden">
         {/* Decorative Corner Pizza */}
-        <div className="absolute -top-20 -right-20 w-80 h-80 opacity-20 pointer-events-none rotate-12">
+        <div className="absolute -top-20 -right-20 w-60 h-60 md:w-80 md:h-80 opacity-20 pointer-events-none rotate-12">
           <Image
             src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=800"
             alt="Decorative Pizza"
@@ -433,14 +462,13 @@ export default function Home() {
           />
         </div>
 
-        <div className="container mx-auto px-8 md:px-16">
-          <div className="text-center mb-24">
-            <span className="font-brush text-[#E53E3E] text-3xl mb-4 block">Quality Meal</span>
-            <h2 className="text-7xl font-poster tracking-tighter text-[#1A1A1A] relative inline-block">
-              SERVICES
-              <div className="absolute inset-0 bg-grunge mix-blend-multiply opacity-40 pointer-events-none"></div>
-            </h2>
+        <div className="container mx-auto px-6 md:px-16">
+          <div className="text-center mb-16 md:mb-24">
+            <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Quality & Care</span>
+            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A]">Our Services</h2>
           </div>
+
+
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
             {/* Left Services */}
@@ -535,25 +563,17 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {/* Bottom Premium Transition */}
-        <BrushBorder position="bottom" color="white" />
-
       </section>
 
       {/* SECTION 2.7 - RECENT POSTS */}
-      <section id="blog" className="py-40 bg-white relative">
-        {/* Top Premium Transition */}
-        <BrushBorder position="top" color="white" />
+      <section id="blog" className="py-20 md:py-32 bg-white relative">
+        <div className="container mx-auto px-6 md:px-16">
 
-        <div className="container mx-auto px-8 md:px-16">
-          <div className="mb-24">
-            <span className="font-brush text-[#E53E3E] text-3xl mb-4 block">Quality Meal</span>
-            <h2 className="text-7xl font-poster tracking-tighter text-[#1A1A1A] relative inline-block">
-              RECENT POST
-              <div className="absolute inset-0 bg-grunge mix-blend-multiply opacity-40 pointer-events-none"></div>
-            </h2>
+          <div className="text-center mb-16 md:mb-24">
+            <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Latest News</span>
+            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A]">Recent Posts</h2>
           </div>
+
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             {/* Featured Post (Left) */}
@@ -631,42 +651,37 @@ export default function Home() {
         </div>
 
         {/* NEWSLETTER BANNER */}
-        <div className="mt-40 container mx-auto px-8 md:px-16">
+        <div className="mt-20 md:mt-40 container mx-auto px-6 md:px-16">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white border-2 border-[#F0F0F0] p-10 md:p-16 flex flex-col lg:flex-row justify-between items-center gap-12 shadow-[0_30px_60px_rgba(0,0,0,0.05)]"
+            className="bg-white border-2 border-[#F0F0F0] p-8 md:p-16 flex flex-col lg:flex-row justify-between items-center gap-8 md:gap-12 shadow-[0_30px_60px_rgba(0,0,0,0.05)] text-center lg:text-left"
           >
             <div className="max-w-md">
-              <h4 className="font-poster text-3xl mb-4 tracking-tight">SUBSCRIBE TO OUR SPECIAL OFFERS</h4>
-              <p className="text-gray-500 text-sm font-serif italic">Sign up today for our newsletter and receive 15% OFF on your first purchase.</p>
+              <h4 className="font-poster text-2xl md:text-3xl mb-4 tracking-tight">SUBSCRIBE TO OUR SPECIAL OFFERS</h4>
+              <p className="text-gray-500 text-xs md:text-sm font-serif italic">Sign up today for our newsletter and receive 15% OFF on your first purchase.</p>
             </div>
-            <div className="flex w-full lg:w-auto gap-0 shadow-lg">
+            <div className="flex flex-col md:flex-row w-full lg:w-auto gap-0 shadow-lg">
               <input
                 type="email"
                 placeholder="Type Your Email"
-                className="flex-1 lg:w-80 px-6 py-5 bg-[#F9F9F9] border-none focus:ring-2 focus:ring-[#E53E3E] text-sm font-serif outline-none"
+                className="flex-1 lg:w-80 px-6 py-4 md:py-5 bg-[#F9F9F9] border-none focus:ring-2 focus:ring-[#E53E3E] text-sm font-serif outline-none"
               />
-              <button className="bg-[#E53E3E] text-white px-12 py-5 text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#C53030] transition-all">
+              <button className="bg-[#E53E3E] text-white px-8 md:px-12 py-4 md:py-5 text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#C53030] transition-all">
                 Submit
               </button>
             </div>
           </motion.div>
         </div>
-
-        {/* Bottom Premium Transition */}
-        <BrushBorder position="bottom" color="white" />
-
       </section>
 
-
       {/* SECTION 3 - STORY */}
-      <section id="ourstory" className="py-40 bg-white relative overflow-hidden">
-        <BrushBorder position="top" color="white" />
+      <section id="ourstory" className="py-20 md:py-32 bg-white relative overflow-hidden">
 
         <div className="absolute inset-0 bg-royal-pattern opacity-5"></div>
-        <div className="container mx-auto px-8 md:px-16 grid lg:grid-cols-2 gap-32 items-center relative z-10">
+        <div className="container mx-auto px-6 md:px-16 grid lg:grid-cols-2 gap-16 md:gap-32 items-center relative z-10">
+
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -684,13 +699,13 @@ export default function Home() {
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="order-1 lg:order-2"
+            className="order-1 lg:order-2 text-center lg:text-left"
           >
-            <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.5em] mb-10 block">Heritage & Passion</span>
-            <h2 className="font-serif text-6xl md:text-7xl font-bold mb-10 leading-tight">
-              Legacy Born <br />from <span className="italic font-normal serif text-[#E53E3E]">Passion.</span>
+            <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Heritage & Passion</span>
+            <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold mb-8 md:mb-10 leading-tight text-[#1A1A1A]">
+              Legacy Born <br className="hidden md:block" />from <span className="italic font-normal font-serif text-[#E53E3E]">Passion.</span>
             </h2>
-            <p className="text-[#6B6B6B] text-lg leading-relaxed font-serif italic mb-10">
+            <p className="text-[#6B6B6B] text-base md:text-lg leading-relaxed font-serif italic mb-8 md:mb-10 max-w-lg mx-auto lg:mx-0">
               "Since 1994, our ovens have never gone cold. We believe that true Neapolitan pizza is not just food—it's a dialogue between the ingredients, the fire, and the hands that knead the dough."
             </p>
             <div className="grid grid-cols-2 gap-12 mt-16">
@@ -710,13 +725,13 @@ export default function Home() {
 
 
       {/* FOOTER */}
-      <footer id="contact" className="bg-[#1A1A1A] text-white pt-40 pb-16 relative overflow-hidden">
+      <footer id="contact" className="bg-[#1A1A1A] text-white pt-48 md:pt-64 pb-12 md:pb-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-royal-pattern opacity-5 pointer-events-none"></div>
         <BrushBorder position="top" color="#1A1A1A" />
 
+        <div className="container mx-auto px-6 md:px-16">
 
-        <div className="container mx-auto px-8 md:px-16">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-24 mb-32">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-16 md:gap-24 mb-24 md:mb-32">
             <div className="md:col-span-2">
               <Link href="/" className="font-serif text-4xl font-bold mb-10 block tracking-tight">
                 VIVA<span className="text-[#E53E3E] ml-1">PIZZERIA</span>
