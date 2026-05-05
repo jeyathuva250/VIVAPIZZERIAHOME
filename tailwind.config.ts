@@ -25,6 +25,9 @@ const config: Config = {
         poster: ["var(--font-poster)", "cursive"],
         brush: ["var(--font-brush)", "cursive"],
         "sans-alt": ["var(--font-sans-alt)", "sans-serif"],
+        "hero-primary": ["'Sauce Tomato'", "serif"],
+        "hero-secondary": ["'Quizlo'", "cursive"],
+        "accent": ["'NCL Bujho Orgnist'", "cursive"],
       },
       colors: {
         primary: {

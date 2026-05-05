@@ -107,15 +107,22 @@ export default function Home() {
               ))}
             </nav>
 
-            <Link
-              href="#reservation"
-              className={`hidden md:inline-flex items-center justify-center border px-10 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all active:scale-[0.98] ${isScrolled
-                ? "border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white"
-                : "border-white text-white hover:bg-white hover:text-black"
-                }`}
+            <motion.div
+              whileHover={{ scale: 1.05, y: -2, rotate: 1.5 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              Reserve a Table
-            </Link>
+              <Link
+                href="#reservation"
+                className={`hidden md:inline-flex items-center justify-center border px-10 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all rounded-full shimmer-container ${isScrolled
+                  ? "border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white"
+                  : "border-white text-white hover:bg-white hover:text-black"
+                  }`}
+              >
+                <span className="shimmer-effect" />
+                Reserve a Table
+              </Link>
+            </motion.div>
 
             {/* Mobile Menu Toggle */}
             <button
@@ -146,13 +153,18 @@ export default function Home() {
                     {item}
                   </Link>
                 ))}
-                <Link
-                  href="#reservation"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="inline-flex items-center justify-center bg-[#E53E3E] text-white px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] mt-2 shadow-lg"
+                <motion.div
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  Reserve a Table
-                </Link>
+                  <Link
+                    href="#reservation"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="inline-flex items-center justify-center bg-[#E53E3E] text-white px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] mt-2 shadow-lg rounded-full w-full"
+                  >
+                    Reserve a Table
+                  </Link>
+                </motion.div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -234,20 +246,32 @@ export default function Home() {
                 </div>
               </div>
 
-              <h1 className="font-serif text-6xl md:text-8xl lg:text-[110px] leading-[0.9] lg:leading-[0.85] mb-8 md:mb-12 font-black tracking-tighter text-white drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]">
+              <h1 className="font-hero-primary text-6xl md:text-8xl lg:text-[110px] leading-[0.9] lg:leading-[0.85] mb-8 md:mb-12 tracking-tighter text-white drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]">
                 THE ART OF <br />
-                <span className="italic font-normal text-[#E53E3E] drop-shadow-[0_0_20px_rgba(229,62,62,0.4)]">FIRE.</span>
+                <span className="text-[#E53E3E] drop-shadow-[0_0_20px_rgba(229,62,62,0.4)]">FIRE.</span>
               </h1>
 
-              <p className="text-white/60 text-base md:text-lg lg:text-xl font-serif italic mb-10 md:mb-12 max-w-lg leading-relaxed">
+              <p className="text-white/70 text-base md:text-lg lg:text-xl font-hero-secondary mb-10 md:mb-12 max-w-lg leading-relaxed tracking-wide">
                 "Mastering the alchemy of wood-fired flames and hand-kneaded tradition since 1994."
               </p>
 
               <div className="flex flex-wrap gap-6 md:gap-8 items-center justify-center lg:justify-start">
 
-                <Link href="#reservation" className="bg-[#E53E3E] text-white px-14 py-6 text-[11px] font-bold uppercase tracking-[0.3em] hover:bg-[#C53030] transition-all shadow-[0_10px_40px_rgba(229,62,62,0.3)] active:scale-95 font-sans">
-                  Order Now
-                </Link>
+                <motion.div
+                  whileHover={{ 
+                    scale: 1.08, 
+                    y: -8,
+                    rotate: -1.5,
+                    boxShadow: "0 25px 50px rgba(229, 62, 62, 0.5)"
+                  }}
+                  whileTap={{ scale: 0.94 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 15 }}
+                >
+                  <Link href="#reservation" className="bg-[#E53E3E] text-white px-14 py-6 text-[11px] font-bold uppercase tracking-[0.3em] hover:bg-[#C53030] transition-all rounded-full font-sans inline-block shimmer-container">
+                    <span className="shimmer-effect" />
+                    Order Now
+                  </Link>
+                </motion.div>
                 <Link href="#thegallery" className="group border-b border-white/20 pb-1 text-[11px] font-bold uppercase tracking-[0.3em] flex items-center gap-3 transition-all hover:border-[#E53E3E] hover:text-[#E53E3E] text-white font-sans">
                   View Menu <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-2" />
                 </Link>
@@ -262,7 +286,7 @@ export default function Home() {
         <div className="container mx-auto px-6 md:px-16">
           <div className="text-center mb-16 md:mb-24">
             <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Chef's Recommendations</span>
-            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A]">Our Best Sellers</h2>
+            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A]">Our Best <span className="font-accent text-[#E53E3E]">Sellers</span></h2>
           </div>
 
 
@@ -366,9 +390,15 @@ export default function Home() {
           </div>
 
           <div className="mt-20 text-center">
-            <button className="bg-[#1A1A1A] text-white px-12 py-5 text-[11px] font-black uppercase tracking-[0.4em] hover:bg-[#E53E3E] transition-all rounded-sm shadow-xl active:scale-95">
+            <motion.button 
+              whileHover={{ scale: 1.05, y: -6, rotate: 1, boxShadow: "0 25px 30px -5px rgba(0, 0, 0, 0.2)" }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 12 }}
+              className="bg-[#1A1A1A] text-white px-12 py-5 text-[11px] font-black uppercase tracking-[0.4em] hover:bg-[#E53E3E] transition-all rounded-full shadow-xl shimmer-container"
+            >
+              <span className="shimmer-effect" />
               View All Items
-            </button>
+            </motion.button>
           </div>
         </div>
       </section>
@@ -379,7 +409,7 @@ export default function Home() {
 
           <div className="text-center mb-16 md:mb-24">
             <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">The Curated Selections</span>
-            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A] mb-12 md:mb-16">Gastronomic Exhibits</h2>
+            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A] mb-12 md:mb-16">Gastronomic <span className="font-accent text-[#E53E3E]">Exhibits</span></h2>
 
             {/* Category Navigation */}
             <div className="flex flex-wrap justify-center gap-8 md:gap-16">
@@ -454,9 +484,15 @@ export default function Home() {
           </motion.div>
 
           <div className="mt-32 text-center">
-            <button className="bg-[#E53E3E] text-white px-16 py-6 text-[10px] font-black uppercase tracking-[0.4em] hover:bg-[#1A1A1A] transition-all shadow-md">
+            <motion.button 
+              whileHover={{ scale: 1.05, y: -6, rotate: -1, boxShadow: "0 25px 30px -5px rgba(229, 62, 62, 0.3)" }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 12 }}
+              className="bg-[#E53E3E] text-white px-16 py-6 text-[10px] font-black uppercase tracking-[0.4em] hover:bg-[#1A1A1A] transition-all rounded-full shadow-md shimmer-container"
+            >
+              <span className="shimmer-effect" />
               View Complete Signature Menu
-            </button>
+            </motion.button>
           </div>
         </div>
       </section>
@@ -467,7 +503,7 @@ export default function Home() {
         <div className="container mx-auto px-6 md:px-16">
           <div className="text-center mb-16 md:mb-24">
             <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Quality & Care</span>
-            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A]">Our Services</h2>
+            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A]">Our <span className="font-accent text-[#E53E3E]">Services</span></h2>
           </div>
 
 
@@ -573,7 +609,7 @@ export default function Home() {
 
           <div className="text-center mb-16 md:mb-24">
             <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Latest News</span>
-            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A]">Recent Posts</h2>
+            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A]">Recent <span className="font-accent text-[#E53E3E]">Posts</span></h2>
           </div>
 
 
@@ -693,7 +729,7 @@ export default function Home() {
           >
             <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Heritage & Passion</span>
             <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold mb-8 md:mb-10 leading-tight text-[#1A1A1A]">
-              Legacy Born <br className="hidden md:block" />from <span className="italic font-normal font-serif text-[#E53E3E]">Passion.</span>
+              Legacy Born <br className="hidden md:block" />from <span className="font-accent text-[#E53E3E]">Passion.</span>
             </h2>
             <p className="text-[#6B6B6B] text-base md:text-lg leading-relaxed font-serif italic mb-8 md:mb-10 max-w-lg mx-auto lg:mx-0">
               "Since 1994, our ovens have never gone cold. We believe that true Neapolitan pizza is not just food—it's a dialogue between the ingredients, the fire, and the hands that knead the dough."
@@ -724,55 +760,114 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#1A1A1A]/80 to-transparent z-0 pointer-events-none"></div>
 
         <div className="container mx-auto px-6 md:px-16 relative z-10">
-          <div className="text-center mb-16 md:mb-24 relative z-10">
+
+          {/* Section Header */}
+          <div className="text-center mb-16 md:mb-20 relative z-10">
             <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Guest Experiences</span>
-            <h2 className="font-serif text-4xl md:text-6xl font-bold text-white">What They Say</h2>
+            <h2 className="font-serif text-4xl md:text-6xl font-bold text-white">What They <span className="font-accent text-[#E53E3E]">Say</span></h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            {[
-              {
-                text: "The best Neapolitan pizza outside of Italy. The crust is perfectly blistered, and the ingredients are exceptionally fresh.",
-                name: "Alessandro Rossi",
-                role: "Food Critic",
-                rating: 5
-              },
-              {
-                text: "A truly cinematic dining experience. The ambiance, the wine selection, and the Truffle Pasta are absolutely out of this world.",
-                name: "Sophia Carter",
-                role: "Local Guide",
-                rating: 5
-              },
-              {
-                text: "We hosted our corporate event here and the service was impeccable. Every guest left amazed by the quality of the food.",
-                name: "Michael Chen",
-                role: "Event Coordinator",
-                rating: 5
-              }
-            ].map((review, i) => (
+          {/* Bento Grid: 1 tall left card + 2 stacked right cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 items-stretch">
+
+            {/* LEFT — Featured large card */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="relative bg-[#E53E3E] p-10 md:p-14 flex flex-col justify-between group overflow-hidden min-h-[380px] md:min-h-[520px]"
+            >
+              {/* Large decorative quote mark */}
+              <div className="absolute -bottom-6 -right-4 text-white/10 pointer-events-none select-none">
+                <svg className="w-48 h-48" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+              </div>
+
+              {/* Stars */}
+              <div className="flex gap-1.5 mb-8">
+                {[...Array(5)].map((_, j) => (
+                  <Star key={j} className="w-5 h-5 fill-white text-white" />
+                ))}
+              </div>
+
+              {/* Review text */}
+              <p className="font-serif italic text-white text-xl md:text-2xl leading-relaxed flex-1 mb-10">
+                "The best Neapolitan pizza outside of Italy. The crust is perfectly blistered, and the ingredients are exceptionally fresh."
+              </p>
+
+              {/* Author */}
+              <div className="border-t border-white/30 pt-6">
+                <h4 className="font-poster text-2xl text-white tracking-tight mb-1">Alessandro Rossi</h4>
+                <span className="text-white/60 text-[10px] font-black uppercase tracking-[0.4em]">Food Critic</span>
+              </div>
+            </motion.div>
+
+            {/* RIGHT — Two stacked cards */}
+            <div className="flex flex-col gap-5 md:gap-6">
+
+              {/* Right Top Card */}
               <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
-                className="bg-white p-10 md:p-12 shadow-xl border-t-4 border-[#E53E3E] relative group hover:-translate-y-2 transition-transform duration-500"
+                transition={{ duration: 0.7, delay: 0.15 }}
+                className="relative bg-white p-8 md:p-10 flex flex-col justify-between group overflow-hidden flex-1"
               >
-                <div className="text-[#E53E3E] flex gap-1 mb-6">
-                  {[...Array(review.rating)].map((_, j) => (
-                    <Star key={j} className="w-5 h-5 fill-current" />
+                <div className="absolute -bottom-4 -right-4 text-gray-100 pointer-events-none select-none">
+                  <svg className="w-28 h-28" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                </div>
+
+                <div className="flex gap-1 mb-5">
+                  {[...Array(5)].map((_, j) => (
+                    <Star key={j} className="w-4 h-4 fill-[#E53E3E] text-[#E53E3E]" />
                   ))}
                 </div>
-                <p className="font-serif italic text-gray-600 text-lg leading-relaxed mb-8 relative z-10">"{review.text}"</p>
-                <div className="relative z-10">
-                  <h4 className="font-poster text-xl tracking-tight text-[#1A1A1A]">{review.name}</h4>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">{review.role}</span>
-                </div>
-                <div className="absolute top-8 right-8 text-gray-100 opacity-50 group-hover:text-[#E53E3E] group-hover:opacity-10 transition-colors duration-500">
-                  <svg className="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" /></svg>
+
+                <p className="font-serif italic text-gray-600 text-base md:text-lg leading-relaxed mb-6 relative z-10">
+                  "A truly cinematic dining experience. The ambiance, the wine selection, and the Truffle Pasta are absolutely out of this world."
+                </p>
+
+                <div className="border-t border-gray-100 pt-5 relative z-10">
+                  <h4 className="font-poster text-lg text-[#1A1A1A] tracking-tight mb-0.5">Sophia Carter</h4>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Local Guide</span>
                 </div>
               </motion.div>
-            ))}
+
+              {/* Right Bottom Card */}
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="relative bg-[#1A1A1A] border border-white/10 p-8 md:p-10 flex flex-col justify-between group overflow-hidden flex-1"
+              >
+                <div className="absolute -bottom-4 -right-4 text-white/5 pointer-events-none select-none">
+                  <svg className="w-28 h-28" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                </div>
+
+                <div className="flex gap-1 mb-5">
+                  {[...Array(5)].map((_, j) => (
+                    <Star key={j} className="w-4 h-4 fill-[#E53E3E] text-[#E53E3E]" />
+                  ))}
+                </div>
+
+                <p className="font-serif italic text-white/70 text-base md:text-lg leading-relaxed mb-6 relative z-10">
+                  "We hosted our corporate event here and the service was impeccable. Every guest left amazed by the quality of the food."
+                </p>
+
+                <div className="border-t border-white/10 pt-5 relative z-10">
+                  <h4 className="font-poster text-lg text-white tracking-tight mb-0.5">Michael Chen</h4>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/40">Event Coordinator</span>
+                </div>
+              </motion.div>
+
+            </div>
           </div>
         </div>
       </section>
@@ -785,7 +880,7 @@ export default function Home() {
         <div className="container mx-auto px-6 md:px-16 relative z-10">
           <div className="text-center mb-16">
             <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Join Our Community</span>
-            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A]">Connect With Us</h2>
+            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A]">Connect With <span className="font-accent text-[#E53E3E]">Us</span></h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-6xl mx-auto">

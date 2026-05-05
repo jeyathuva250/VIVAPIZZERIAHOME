@@ -1,3 +1,28 @@
+/* ── Custom Fonts ──────────────────────────── */
+@font-face {
+  font-family: 'Sauce Tomato';
+  src: url('/fonts/SauceTomato.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Quizlo';
+  src: url('/fonts/Quizlo.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NCL Bujho Orgnist';
+  src: url('/fonts/NCLBujhoOrgnist.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,16 +43,37 @@
   }
 }
 
-.text-gradient {
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 .bg-royal-pattern {
   background-image: radial-gradient(#e53e3e 0.5px, transparent 0.5px);
   background-size: 24px 24px;
   opacity: 0.03;
+}
+
+/* ── High-Level Button Shimmer ──────────────── */
+.shimmer-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-effect {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: 0s;
+}
+
+.shimmer-container:hover .shimmer-effect {
+  left: 150%;
+  transition: 0.7s ease-in-out;
 }
 
 .royal-border {
