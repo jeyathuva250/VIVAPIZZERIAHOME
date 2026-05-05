@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePres
 import { Star, Instagram, Facebook, ArrowRight, MapPin, Phone, Clock, Plus, GlassWater, Wine, Pizza as PizzaIcon, Utensils, Menu, X, Mail } from "lucide-react";
 import Link from "next/link";
 import { BrushBorder } from "./components/BrushBorder";
+import { PremiumButton } from "./components/PremiumButton";
 
 
 type Category = "Pizza" | "Pasta" | "Beverages" | "Cocktails";
@@ -107,22 +108,15 @@ export default function Home() {
               ))}
             </nav>
 
-            <motion.div
-              whileHover={{ scale: 1.05, y: -2, rotate: 1.5 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
-              <Link
-                href="#reservation"
-                className={`hidden md:inline-flex items-center justify-center border px-10 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all rounded-full shimmer-container ${isScrolled
-                  ? "border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white"
-                  : "border-white text-white hover:bg-white hover:text-black"
-                  }`}
+            <div className="hidden md:block">
+              <PremiumButton 
+                href="#reservation" 
+                variant={isScrolled ? "dark" : "outline"}
+                className="!px-8 !py-3"
               >
-                <span className="shimmer-effect" />
                 Reserve a Table
-              </Link>
-            </motion.div>
+              </PremiumButton>
+            </div>
 
             {/* Mobile Menu Toggle */}
             <button
@@ -153,18 +147,13 @@ export default function Home() {
                     {item}
                   </Link>
                 ))}
-                <motion.div
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
+                <Link
+                  href="#reservation"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="inline-flex items-center justify-center bg-[#E53E3E] text-white px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] mt-2 shadow-lg"
                 >
-                  <Link
-                    href="#reservation"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="inline-flex items-center justify-center bg-[#E53E3E] text-white px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] mt-2 shadow-lg rounded-full w-full"
-                  >
-                    Reserve a Table
-                  </Link>
-                </motion.div>
+                  Reserve a Table
+                </Link>
               </motion.div>
             )}
           </AnimatePresence>
@@ -257,21 +246,9 @@ export default function Home() {
 
               <div className="flex flex-wrap gap-6 md:gap-8 items-center justify-center lg:justify-start">
 
-                <motion.div
-                  whileHover={{ 
-                    scale: 1.08, 
-                    y: -8,
-                    rotate: -1.5,
-                    boxShadow: "0 25px 50px rgba(229, 62, 62, 0.5)"
-                  }}
-                  whileTap={{ scale: 0.94 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 15 }}
-                >
-                  <Link href="#reservation" className="bg-[#E53E3E] text-white px-14 py-6 text-[11px] font-bold uppercase tracking-[0.3em] hover:bg-[#C53030] transition-all rounded-full font-sans inline-block shimmer-container">
-                    <span className="shimmer-effect" />
-                    Order Now
-                  </Link>
-                </motion.div>
+                <PremiumButton href="#reservation">
+                  Order Now
+                </PremiumButton>
                 <Link href="#thegallery" className="group border-b border-white/20 pb-1 text-[11px] font-bold uppercase tracking-[0.3em] flex items-center gap-3 transition-all hover:border-[#E53E3E] hover:text-[#E53E3E] text-white font-sans">
                   View Menu <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-2" />
                 </Link>
@@ -390,15 +367,9 @@ export default function Home() {
           </div>
 
           <div className="mt-20 text-center">
-            <motion.button 
-              whileHover={{ scale: 1.05, y: -6, rotate: 1, boxShadow: "0 25px 30px -5px rgba(0, 0, 0, 0.2)" }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 12 }}
-              className="bg-[#1A1A1A] text-white px-12 py-5 text-[11px] font-black uppercase tracking-[0.4em] hover:bg-[#E53E3E] transition-all rounded-full shadow-xl shimmer-container"
-            >
-              <span className="shimmer-effect" />
+            <PremiumButton variant="dark">
               View All Items
-            </motion.button>
+            </PremiumButton>
           </div>
         </div>
       </section>
@@ -484,15 +455,9 @@ export default function Home() {
           </motion.div>
 
           <div className="mt-32 text-center">
-            <motion.button 
-              whileHover={{ scale: 1.05, y: -6, rotate: -1, boxShadow: "0 25px 30px -5px rgba(229, 62, 62, 0.3)" }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 12 }}
-              className="bg-[#E53E3E] text-white px-16 py-6 text-[10px] font-black uppercase tracking-[0.4em] hover:bg-[#1A1A1A] transition-all rounded-full shadow-md shimmer-container"
-            >
-              <span className="shimmer-effect" />
+            <PremiumButton>
               View Complete Signature Menu
-            </motion.button>
+            </PremiumButton>
           </div>
         </div>
       </section>
