@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePresence } from "framer-motion";
-import { Star, Instagram, Facebook, ArrowRight, MapPin, Phone, Clock, Plus, GlassWater, Wine, Pizza as PizzaIcon, Utensils, Menu, X } from "lucide-react";
+import { Star, Instagram, Facebook, ArrowRight, MapPin, Phone, Clock, Plus, GlassWater, Wine, Pizza as PizzaIcon, Utensils, Menu, X, Mail } from "lucide-react";
 import Link from "next/link";
 import { BrushBorder } from "./components/BrushBorder";
 
@@ -159,7 +159,7 @@ export default function Home() {
         </header>
 
         <div
-          className="relative min-h-[110vh] w-full bg-[#0A0A0A] flex items-center -mt-32"
+          className="relative min-h-[110vh] w-full bg-[#0A0A0A] flex flex-col justify-center -mt-32"
           style={{
             WebkitMaskImage: "url('/premium-brush.svg'), linear-gradient(to bottom, black, black)",
             maskImage: "url('/premium-brush.svg'), linear-gradient(to bottom, black, black)",
@@ -171,15 +171,48 @@ export default function Home() {
             maskPosition: "bottom, top",
           }}
         >
+          {/* Right side Diagonal Video Layout */}
+          <motion.div 
+            style={{ y: foregroundY }}
+            className="absolute top-0 right-0 w-full md:w-[55%] lg:w-[60%] h-[120%] -mt-[10%] z-0 hidden lg:block"
+          >
+            <div 
+              className="w-full h-full shadow-[0_0_50px_rgba(0,0,0,0.5)] relative"
+              style={{ clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0% 100%)" }}
+            >
+              <video 
+                src="/hero_video.mp4" 
+                autoPlay 
+                loop 
+                muted 
+                playsInline 
+                className="w-full h-full object-cover opacity-80"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent"></div>
+            </div>
+          </motion.div>
+
+          {/* Mobile Video Background */}
+          <div className="absolute inset-0 w-full h-full z-0 lg:hidden opacity-30">
+            <video 
+              src="/hero_video.mp4" 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              className="w-full h-full object-cover"
+            />
+          </div>
+
           {/* PARALLAX BACKGROUND LAYERS */}
-          <motion.div style={{ y: backgroundY }} className="absolute inset-0 bg-royal-pattern opacity-10 -z-10"></motion.div>
+          <motion.div style={{ y: backgroundY }} className="absolute inset-0 bg-royal-pattern opacity-10 z-0 pointer-events-none mix-blend-overlay"></motion.div>
 
           {/* Top Legibility Gradient */}
-          <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black/80 to-transparent z-0 pointer-events-none"></div>
+          <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black/80 to-transparent z-10 pointer-events-none"></div>
 
           <motion.div
             style={{ y: foregroundY, opacity: contentOpacity, scale: contentScale }}
-            className="container mx-auto px-6 md:px-16 grid lg:grid-cols-2 gap-16 md:gap-32 items-center pt-32 md:pt-52 pb-24 md:pb-32"
+            className="container mx-auto px-6 md:px-16 flex items-center pt-32 md:pt-52 pb-24 md:pb-32 relative z-20 w-full"
           >
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -218,27 +251,6 @@ export default function Home() {
                 <Link href="#thegallery" className="group border-b border-white/20 pb-1 text-[11px] font-bold uppercase tracking-[0.3em] flex items-center gap-3 transition-all hover:border-[#E53E3E] hover:text-[#E53E3E] text-white font-sans">
                   View Menu <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-2" />
                 </Link>
-              </div>
-            </motion.div>
-
-            <motion.div
-              style={{ x: imageX, y: imageY }}
-              initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
-              animate={{ opacity: 1, scale: 1, rotate: 2 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="relative z-10"
-            >
-              <div className="royal-border p-3 md:p-6 bg-[#1A1A1A] shadow-[30px_30px_60px_rgba(0,0,0,0.5)] border-white/10">
-                <div className="relative aspect-[4/5] md:aspect-square overflow-hidden bg-[#0A0A0A]">
-                  <Image
-                    src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200"
-                    alt="Signature Pizza"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-1000 hover:scale-105"
-                    priority
-                  />
-                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -367,7 +379,7 @@ export default function Home() {
 
           <div className="text-center mb-16 md:mb-24">
             <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">The Curated Selections</span>
-            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A]">Gastronomic Exhibits</h2>
+            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1A1A1A] mb-12 md:mb-16">Gastronomic Exhibits</h2>
 
             {/* Category Navigation */}
             <div className="flex flex-wrap justify-center gap-8 md:gap-16">
@@ -399,7 +411,7 @@ export default function Home() {
           {/* Filtered Gallery Grid */}
           <motion.div
             layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 min-h-[600px]"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
           >
             <AnimatePresence mode="popLayout">
               {filteredDishes.map((dish, index) => (
@@ -410,7 +422,7 @@ export default function Home() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.6, delay: index * 0.05 }}
-                  className="group relative overflow-hidden bg-white shadow-lg"
+                  className="group relative overflow-hidden bg-white shadow-lg rounded-[2.5rem]"
                 >
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <Image
@@ -442,7 +454,7 @@ export default function Home() {
           </motion.div>
 
           <div className="mt-32 text-center">
-            <button className="bg-royal-pattern border border-[#F0F0F0] px-16 py-6 text-[10px] font-black uppercase tracking-[0.4em] hover:bg-[#1A1A1A] hover:text-white transition-all shadow-sm">
+            <button className="bg-[#E53E3E] text-white px-16 py-6 text-[10px] font-black uppercase tracking-[0.4em] hover:bg-[#1A1A1A] transition-all shadow-md">
               View Complete Signature Menu
             </button>
           </div>
@@ -451,15 +463,6 @@ export default function Home() {
 
       {/* SECTION 2.5 - SERVICES */}
       <section id="services" className="py-20 md:py-32 bg-white relative overflow-hidden">
-        {/* Decorative Corner Pizza */}
-        <div className="absolute -top-20 -right-20 w-60 h-60 md:w-80 md:h-80 opacity-20 pointer-events-none rotate-12">
-          <Image
-            src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=800"
-            alt="Decorative Pizza"
-            fill
-            className="object-contain"
-          />
-        </div>
 
         <div className="container mx-auto px-6 md:px-16">
           <div className="text-center mb-16 md:mb-24">
@@ -635,18 +638,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Floating Ingredients Decoration */}
-          <motion.div
-            style={{ y: foregroundY }}
-            className="absolute bottom-20 right-10 w-96 h-96 pointer-events-none opacity-80 hidden xl:block"
-          >
-            <Image
-              src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?q=80&w=800"
-              alt="Floating Ingredients"
-              fill
-              className="object-contain"
-            />
-          </motion.div>
         </div>
 
         {/* NEWSLETTER BANNER */}
@@ -655,17 +646,18 @@ export default function Home() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white border-2 border-[#F0F0F0] p-8 md:p-16 flex flex-col lg:flex-row justify-between items-center gap-8 md:gap-12 shadow-[0_30px_60px_rgba(0,0,0,0.05)] text-center lg:text-left"
+            className="bg-[#1A1A1A] text-white p-10 md:p-16 flex flex-col lg:flex-row justify-between items-center gap-8 md:gap-12 shadow-2xl text-center lg:text-left relative overflow-hidden rounded-3xl"
           >
-            <div className="max-w-md">
-              <h4 className="font-poster text-2xl md:text-3xl mb-4 tracking-tight">SUBSCRIBE TO OUR SPECIAL OFFERS</h4>
-              <p className="text-gray-500 text-xs md:text-sm font-serif italic">Sign up today for our newsletter and receive 15% OFF on your first purchase.</p>
+            <div className="absolute inset-0 bg-royal-pattern opacity-10 pointer-events-none"></div>
+            <div className="max-w-xl relative z-10">
+              <h4 className="font-serif text-3xl md:text-5xl font-bold mb-4 tracking-tight">Subscribe to Our Special Offers</h4>
+              <p className="text-gray-400 text-sm md:text-base font-serif italic">Sign up today for our newsletter and receive 15% OFF on your first purchase.</p>
             </div>
-            <div className="flex flex-col md:flex-row w-full lg:w-auto gap-0 shadow-lg">
+            <div className="flex flex-col md:flex-row w-full lg:w-auto gap-0 shadow-2xl relative z-10 rounded-lg overflow-hidden border border-white/10">
               <input
                 type="email"
                 placeholder="Type Your Email"
-                className="flex-1 lg:w-80 px-6 py-4 md:py-5 bg-[#F9F9F9] border-none focus:ring-2 focus:ring-[#E53E3E] text-sm font-serif outline-none"
+                className="flex-1 lg:w-80 px-6 py-4 md:py-5 bg-white/5 border-none focus:bg-white/10 text-white placeholder-gray-500 text-sm font-serif outline-none transition-colors"
               />
               <button className="bg-[#E53E3E] text-white px-8 md:px-12 py-4 md:py-5 text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#C53030] transition-all">
                 Submit
@@ -884,83 +876,85 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer id="contact" className="bg-[#1A1A1A] text-white pt-12 md:pt-16 pb-12 md:pb-16 relative">
+      <footer id="contact" className="bg-[#1A1A1A] text-white pt-16 pb-8 relative">
         <div className="absolute inset-0 bg-royal-pattern opacity-5 pointer-events-none"></div>
         <BrushBorder position="top" color="#1A1A1A" />
 
-        <div className="container mx-auto px-6 md:px-16">
-
-          {/* Two Column Info Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 mb-24 md:mb-32">
-
-            {/* Left Column - Address & Contact */}
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-[#E53E3E] rounded-full p-5 mb-6 shadow-lg shadow-red-500/20">
-                <MapPin className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-serif text-3xl font-bold mb-4 text-white">Address</h3>
-              <p className="text-gray-400 font-serif text-lg mb-16">
-                158 O'Connor Dr, East York, ON M4J 2S4
+        <div className="container mx-auto px-6 md:px-16 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 mt-8">
+            {/* Brand & About */}
+            <div>
+              <Link href="/" className="font-serif text-2xl font-bold tracking-tight text-white mb-6 block">
+                VIVA<span className="text-[#E53E3E] ml-0.5">PIZZERIA</span>
+              </Link>
+              <p className="text-gray-400 font-serif text-sm leading-relaxed mb-6">
+                Mastering the alchemy of wood-fired flames and hand-kneaded tradition since 1994.
               </p>
-
-              <div className="bg-[#E53E3E] rounded-full p-5 mb-6 shadow-lg shadow-red-500/20">
-                <Phone className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-serif text-3xl font-bold mb-4 text-white">Phone & Email</h3>
-              <p className="text-gray-400 font-serif text-lg leading-relaxed">
-                Phone: 416-282-6886<br />
-                Email: info@vivapizza.ca
-              </p>
-            </div>
-
-            {/* Right Column - Working Hours & Socials */}
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-[#E53E3E] rounded-full p-5 mb-6 shadow-lg shadow-red-500/20">
-                <Clock className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-serif text-3xl font-bold mb-6 text-white">Working Hours</h3>
-              <ul className="text-gray-400 font-serif text-lg space-y-2 mb-12">
-                <li>Mon: Closed</li>
-                <li>Tue: 4:00pm – 10:00pm</li>
-                <li>Wed: 4:00pm – 10:00pm</li>
-                <li>Thu: 4:00pm – 10:00pm</li>
-                <li>Fri: 12:00pm – 10:00pm</li>
-                <li>Sun: 12:00pm – 10:00pm</li>
-                <li>Sat: 12:00pm – 10:00pm</li>
-              </ul>
-
-              {/* Social Icons */}
               <div className="flex gap-4">
-                <a href="#" className="bg-[#E53E3E] p-4 rounded-full hover:bg-white hover:text-[#E53E3E] transition-all shadow-lg text-white">
-                  <Facebook className="w-6 h-6 fill-current" />
+                <a href="https://web.facebook.com/people/Viva-Pizzeria-and-Pasta/61564076226960/" target="_blank" rel="noopener noreferrer" className="bg-white/5 p-2 rounded-full text-gray-400 hover:text-white hover:bg-[#E53E3E] transition-all">
+                  <Facebook className="w-4 h-4 fill-current" />
                 </a>
-                <a href="#" className="bg-[#E53E3E] p-4 rounded-full hover:bg-white hover:text-[#E53E3E] transition-all shadow-lg text-white">
-                  <Instagram className="w-6 h-6" />
+                <a href="https://www.instagram.com/vivapizzeriaandpastahouse/" target="_blank" rel="noopener noreferrer" className="bg-white/5 p-2 rounded-full text-gray-400 hover:text-white hover:bg-[#E53E3E] transition-all">
+                  <Instagram className="w-4 h-4" />
                 </a>
-                <a href="#" className="bg-[#E53E3E] p-4 rounded-full hover:bg-white hover:text-[#E53E3E] transition-all shadow-lg text-white flex items-center justify-center">
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 15.71a6.34 6.34 0 0 0 6.27 6.36 6.35 6.35 0 0 0 6.25-6.36V7.94a8.17 8.17 0 0 0 4.38 1.25V5.75a4.79 4.79 0 0 1-2.31-.69z" /></svg>
+                <a href="https://www.tiktok.com/search?q=viva%20pizzeria&t=1744150773232" target="_blank" rel="noopener noreferrer" className="bg-white/5 p-2 rounded-full text-gray-400 hover:text-white hover:bg-[#E53E3E] transition-all flex items-center justify-center">
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 15.71a6.34 6.34 0 0 0 6.27 6.36 6.35 6.35 0 0 0 6.25-6.36V7.94a8.17 8.17 0 0 0 4.38 1.25V5.75a4.79 4.79 0 0 1-2.31-.69z" /></svg>
                 </a>
               </div>
             </div>
 
+            {/* Address */}
+            <div>
+              <h4 className="font-sans text-sm font-bold uppercase tracking-widest text-white mb-6">Location</h4>
+              <div className="flex items-start gap-3 text-gray-400 font-serif text-sm">
+                <MapPin className="w-5 h-5 text-[#E53E3E] shrink-0" />
+                <p>158 O'Connor Dr,<br />East York, ON M4J 2S4</p>
+              </div>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4 className="font-sans text-sm font-bold uppercase tracking-widest text-white mb-6">Contact</h4>
+              <div className="space-y-4 text-gray-400 font-serif text-sm">
+                <div className="flex items-center gap-3">
+                  <Phone className="w-5 h-5 text-[#E53E3E] shrink-0" />
+                  <p>416-282-6886</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Mail className="w-5 h-5 text-[#E53E3E] shrink-0" />
+                  <p>info@vivapizza.ca</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Working Hours */}
+            <div>
+              <h4 className="font-sans text-sm font-bold uppercase tracking-widest text-white mb-6">Hours</h4>
+              <ul className="text-gray-400 font-serif text-sm space-y-3">
+                <li className="flex justify-between border-b border-white/5 pb-2"><span>Mon</span> <span>Closed</span></li>
+                <li className="flex justify-between border-b border-white/5 pb-2"><span>Tue - Thu</span> <span>4:00pm - 10:00pm</span></li>
+                <li className="flex justify-between"><span>Fri - Sun</span> <span>12:00pm - 10:00pm</span></li>
+              </ul>
+            </div>
           </div>
 
           {/* Delivery Links */}
-          <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 mb-20 border-t border-white/5 pt-20">
-            <Link href="#reservation" className="text-[#E53E3E] font-bold text-lg flex items-center gap-2 hover:text-white transition-colors">
-              Order Now <ArrowRight className="w-5 h-5" />
+          <div className="flex flex-wrap justify-between items-center gap-6 py-8 border-y border-white/10">
+            <Link href="#reservation" className="text-[#E53E3E] font-bold text-sm uppercase tracking-widest flex items-center gap-2 hover:text-white transition-colors">
+              Order Now <ArrowRight className="w-4 h-4" />
             </Link>
-            <span className="font-sans text-xl font-medium tracking-tight text-white">ORDER PICKUP</span>
-            <span className="font-sans text-2xl tracking-tight text-[#06C167]">Uber <span className="font-bold">Eats</span></span>
-            <span className="font-sans text-2xl font-bold tracking-tight text-[#FF3008]">DOORDASH</span>
-            <span className="font-sans text-2xl font-black italic tracking-tighter text-[#F36F21]">SKIP<span className="text-sm uppercase not-italic tracking-normal ml-1">THE DISHES</span></span>
+            <div className="flex flex-wrap gap-8 items-center opacity-70 hover:opacity-100 transition-opacity duration-300">
+              <span className="font-sans text-sm tracking-tight text-white font-bold">ORDER PICKUP:</span>
+              <span className="font-sans text-lg tracking-tight text-[#06C167]">Uber <span className="font-bold">Eats</span></span>
+              <span className="font-sans text-lg font-bold tracking-tight text-[#FF3008]">DOORDASH</span>
+              <span className="font-sans text-lg font-black italic tracking-tighter text-[#F36F21]">SKIP<span className="text-[10px] uppercase not-italic tracking-normal ml-0.5">THE DISHES</span></span>
+            </div>
           </div>
 
           {/* Bottom Bar */}
-          <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-500 font-sans">
-            <p>vivapizzeria</p>
-            <p>Custom website designed by <a href="https://thebestmedia.com" target="_blank" rel="noopener noreferrer" className="text-[#E53E3E] hover:text-white transition-colors">thebestmedia.com</a></p>
-            <p>All rights reserved</p>
+          <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 font-sans">
+            <p>© {new Date().getFullYear()} Viva Pizzeria. All rights reserved.</p>
+            <p>Custom website designed by <a href="https://auroze.com" target="_blank" rel="noopener noreferrer" className="text-white font-medium hover:text-[#E53E3E] transition-colors">Auroze</a></p>
           </div>
         </div>
       </footer>
