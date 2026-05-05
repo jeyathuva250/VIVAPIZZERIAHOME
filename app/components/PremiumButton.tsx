@@ -27,7 +27,7 @@ export const PremiumButton = ({
   const mouseY = useMotionValue(0);
 
   // Smooth springs for the magnetic movement
-  const springConfig = { stiffness: 150, damping: 15 };
+  const springConfig = { stiffness: 100, damping: 25 };
   const springX = useSpring(mouseX, springConfig);
   const springY = useSpring(mouseY, springConfig);
 
@@ -37,9 +37,9 @@ export const PremiumButton = ({
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
     
-    // Magnetic intensity (0.4 means it moves 40% of the distance to the mouse)
-    mouseX.set(x * 0.4);
-    mouseY.set(y * 0.4);
+    // Magnetic intensity (0.15 means it moves 15% of the distance to the mouse)
+    mouseX.set(x * 0.15);
+    mouseY.set(y * 0.15);
   };
 
   const handleMouseLeave = () => {
