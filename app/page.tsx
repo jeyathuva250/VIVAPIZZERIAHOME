@@ -142,7 +142,7 @@ export default function Home() {
                     key={item}
                     href={`#${item.toLowerCase().replace(/\s+/g, "")}`}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-base font-black uppercase tracking-[0.2em] text-[#1A1A1A] hover:text-[#E53E3E] border-b border-gray-100 pb-4"
+                    className="text-sm sm:text-base font-black uppercase tracking-[0.2em] text-[#1A1A1A] hover:text-[#E53E3E] border-b border-gray-100 pb-3 sm:pb-4"
                   >
                     {item}
                   </Link>
@@ -237,12 +237,12 @@ export default function Home() {
                 </div>
               </div>
 
-              <h1 className="font-hero-primary text-6xl md:text-8xl lg:text-[110px] leading-[0.9] lg:leading-[0.85] mb-8 md:mb-12 tracking-tighter text-white drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]">
+              <h1 className="font-sauce-tomato text-4xl sm:text-5xl md:text-7xl lg:text-[110px] leading-[0.9] lg:leading-[0.85] mb-6 md:mb-8 lg:mb-12 tracking-tighter text-white drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]">
                 THE ART OF <br />
-                <span className="text-[#E53E3E] drop-shadow-[0_0_20px_rgba(229,62,62,0.4)]">FIRE.</span>
+                <span className="font-quizlo text-[#E53E3E] drop-shadow-[0_0_20px_rgba(229,62,62,0.4)]">FIRE.</span>
               </h1>
 
-              <p className="text-white/70 text-base md:text-lg lg:text-xl font-hero-secondary mb-10 md:mb-12 max-w-lg leading-relaxed tracking-wide">
+              <p className="text-white/70 text-sm sm:text-base md:text-lg lg:text-xl font-serif italic mb-8 md:mb-10 lg:mb-12 max-w-lg leading-relaxed tracking-wide">
                 "Mastering the alchemy of wood-fired flames and hand-kneaded tradition since 1994."
               </p>
 
@@ -286,7 +286,7 @@ export default function Home() {
                   hover: { y: -10 }
                 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="relative p-8 flex flex-col items-center text-center group"
+                className="relative p-4 sm:p-6 md:p-8 flex flex-col items-center text-center group"
               >
                 {/* Highlight Background (Visible on Hover) */}
                 <motion.div
@@ -744,7 +744,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="relative bg-[#E53E3E] p-10 md:p-14 flex flex-col justify-between group overflow-hidden min-h-[380px] md:min-h-[520px]"
+              className="relative bg-[#E53E3E] p-6 sm:p-8 md:p-10 lg:p-14 flex flex-col justify-between group overflow-hidden min-h-[300px] sm:min-h-[350px] md:min-h-[450px] lg:min-h-[520px] rounded-3xl shadow-2xl"
             >
               {/* Large decorative quote mark */}
               <div className="absolute -bottom-6 -right-4 text-white/10 pointer-events-none select-none">
@@ -761,8 +761,8 @@ export default function Home() {
               </div>
 
               {/* Review text */}
-              <p className="font-serif italic text-white text-xl md:text-2xl leading-relaxed flex-1 mb-10">
-                "The best Neapolitan pizza outside of Italy. The crust is perfectly blistered, and the ingredients are exceptionally fresh."
+              <p className="font-serif italic text-white text-lg sm:text-xl md:text-2xl leading-relaxed flex-1 mb-6 sm:mb-8 md:mb-10">
+                "The best Neapolitan pizza outside of Italy. The crust is perfectly blistered, and ingredients are exceptionally fresh."
               </p>
 
               {/* Author */}
@@ -781,7 +781,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.15 }}
-                className="relative bg-white p-8 md:p-10 flex flex-col justify-between group overflow-hidden flex-1"
+                className="relative bg-white p-6 sm:p-8 md:p-10 flex flex-col justify-between group overflow-hidden flex-1 rounded-3xl shadow-lg"
               >
                 <div className="absolute -bottom-4 -right-4 text-gray-100 pointer-events-none select-none">
                   <svg className="w-28 h-28" fill="currentColor" viewBox="0 0 24 24">
@@ -795,7 +795,7 @@ export default function Home() {
                   ))}
                 </div>
 
-                <p className="font-serif italic text-gray-600 text-base md:text-lg leading-relaxed mb-6 relative z-10">
+                <p className="font-serif italic text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 relative z-10">
                   "A truly cinematic dining experience. The ambiance, the wine selection, and the Truffle Pasta are absolutely out of this world."
                 </p>
 
@@ -811,7 +811,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.3 }}
-                className="relative bg-[#1A1A1A] border border-white/10 p-8 md:p-10 flex flex-col justify-between group overflow-hidden flex-1"
+                className="relative bg-[#1A1A1A] border border-white/10 p-6 sm:p-8 md:p-10 flex flex-col justify-between group overflow-hidden flex-1 rounded-3xl shadow-lg"
               >
                 <div className="absolute -bottom-4 -right-4 text-white/5 pointer-events-none select-none">
                   <svg className="w-28 h-28" fill="currentColor" viewBox="0 0 24 24">
@@ -825,7 +825,7 @@ export default function Home() {
                   ))}
                 </div>
 
-                <p className="font-serif italic text-white/70 text-base md:text-lg leading-relaxed mb-6 relative z-10">
+                <p className="font-serif italic text-white/70 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 relative z-10">
                   "We hosted our corporate event here and the service was impeccable. Every guest left amazed by the quality of the food."
                 </p>
 
