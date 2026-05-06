@@ -87,7 +87,7 @@ export default function Home() {
       <section ref={heroRef} className="relative min-h-[125vh] flex flex-col bg-white">
         {/* LOCALIZED STICKY NAVBAR */}
         <header
-          className={`sticky top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? "bg-white/95 backdrop-blur-md shadow-md py-4" : "bg-transparent py-10"
+          className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? "bg-white/95 backdrop-blur-md shadow-md py-4" : "bg-transparent py-10"
             }`}
         >
           <div className="container mx-auto px-6 md:px-16 flex justify-between items-center">
@@ -147,20 +147,22 @@ export default function Home() {
                     {item}
                   </Link>
                 ))}
-                <Link
-                  href="#reservation"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="inline-flex items-center justify-center bg-[#E53E3E] text-white px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] mt-2 shadow-lg"
-                >
-                  Reserve a Table
-                </Link>
+                <div className="mt-2">
+                  <PremiumButton
+                    href="#reservation"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="w-full"
+                  >
+                    Reserve a Table
+                  </PremiumButton>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
         </header>
 
         <div
-          className="relative min-h-[110vh] w-full bg-[#0A0A0A] flex flex-col justify-center -mt-32"
+          className="relative min-h-[110vh] w-full bg-[#0A0A0A] flex flex-col justify-center"
           style={{
             WebkitMaskImage: "url('/premium-brush.svg'), linear-gradient(to bottom, black, black)",
             maskImage: "url('/premium-brush.svg'), linear-gradient(to bottom, black, black)",
@@ -679,7 +681,8 @@ export default function Home() {
             viewport={{ once: true }}
             className="order-2 lg:order-1"
           >
-            <div className="royal-border bg-white p-4 md:p-8 shadow-2xl">
+            <div className="relative border border-[#1A1A1A] p-1 bg-white shadow-2xl">
+              <div className="absolute inset-0.5 border border-[#E53E3E] pointer-events-none"></div>
               <div className="relative aspect-[4/5] overflow-hidden">
                 <Image src="https://images.unsplash.com/photo-1590947132387-155cc02f3212?q=80&w=1200" alt="Master Chef" fill className="object-cover" />
               </div>
