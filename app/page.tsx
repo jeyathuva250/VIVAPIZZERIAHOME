@@ -215,7 +215,7 @@ export default function Home() {
 
           <motion.div
             style={{ y: foregroundY, opacity: contentOpacity, scale: contentScale }}
-            className="container mx-auto px-6 md:px-16 flex items-center pt-32 md:pt-52 pb-24 md:pb-32 relative z-20 w-full"
+            className="container mx-auto px-4 sm:px-6 md:px-16 flex items-center pt-20 sm:pt-32 md:pt-40 pb-16 sm:pb-20 md:pb-24 relative z-20 w-full"
           >
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -261,7 +261,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 1.5 - BEST SELLERS */}
-      <section id="bestsellers" className="py-20 md:py-32 bg-white relative">
+      <section id="bestsellers" className="py-8 sm:py-12 md:py-16 lg:py-24 bg-white relative">
         <div className="container mx-auto px-6 md:px-16">
           <div className="text-center mb-16 md:mb-24">
             <span className="text-[#E53E3E] text-[10px] font-black uppercase tracking-[0.6em] mb-4 md:mb-6 block">Chef's Recommendations</span>
@@ -377,7 +377,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 2 - THE GALLERY (FILTERED) */}
-      <section id="thegallery" className="py-20 md:py-32 bg-white relative">
+      <section id="thegallery" className="py-12 sm:py-16 md:py-24 bg-white relative">
         <div className="container mx-auto px-6 md:px-16">
 
           <div className="text-center mb-16 md:mb-24">
@@ -465,7 +465,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 2.5 - SERVICES */}
-      <section id="services" className="py-20 md:py-32 bg-white relative overflow-hidden">
+      <section id="services" className="py-12 sm:py-16 md:py-24 bg-white relative overflow-hidden">
 
         <div className="container mx-auto px-6 md:px-16">
           <div className="text-center mb-16 md:mb-24">
@@ -571,7 +571,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 2.7 - RECENT POSTS */}
-      <section id="blog" className="py-20 md:py-32 bg-white relative">
+      <section id="blog" className="py-12 sm:py-16 md:py-24 bg-white relative">
         <div className="container mx-auto px-6 md:px-16">
 
           <div className="text-center mb-16 md:mb-24">
@@ -671,7 +671,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 3 - STORY */}
-      <section id="ourstory" className="pt-20 pb-32 md:pt-32 md:pb-40 bg-white relative">
+      <section id="ourstory" className="pt-12 sm:pt-16 md:pt-20 pb-20 sm:pb-24 md:pb-32 mb-16 sm:mb-8 bg-white relative">
         <div className="absolute inset-0 bg-royal-pattern opacity-5"></div>
         <div className="container mx-auto px-6 md:px-16 grid lg:grid-cols-2 gap-16 md:gap-32 items-center relative z-10">
 
@@ -702,7 +702,7 @@ export default function Home() {
             <p className="text-[#6B6B6B] text-base md:text-lg leading-relaxed font-serif italic mb-8 md:mb-10 max-w-lg mx-auto lg:mx-0">
               "Since 1994, our ovens have never gone cold. We believe that true Neapolitan pizza is not just food—it's a dialogue between the ingredients, the fire, and the hands that knead the dough."
             </p>
-            <div className="grid grid-cols-2 gap-12 mt-16">
+            <div className="grid grid-cols-2 gap-12 mt-8 sm:mt-12 md:mt-16">
               <div>
                 <span className="block font-serif text-5xl font-bold text-[#E53E3E] mb-3">12k+</span>
                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#6B6B6B]">Satisfied Guests</span>
@@ -842,7 +842,7 @@ export default function Home() {
 
 
       {/* SECTION 4 - SOCIAL FEEDS IFRAMES */}
-      <section className="pt-8 pb-32 md:pt-12 md:pb-40 bg-white relative">
+      <section className="pb-32 sm:pb-40 md:pb-48 bg-white relative">
         <BrushBorder position="top" color="white" />
 
         <div className="container mx-auto px-6 md:px-16 relative z-10">
@@ -940,7 +940,7 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer id="contact" className="bg-[#1A1A1A] text-white pt-16 pb-8 relative">
+      <footer id="contact" className="bg-[#1A1A1A] text-white pt-8 sm:pt-12 pb-6 sm:pb-8 relative">
         <div className="absolute inset-0 bg-royal-pattern opacity-5 pointer-events-none"></div>
         <BrushBorder position="top" color="#1A1A1A" />
 
