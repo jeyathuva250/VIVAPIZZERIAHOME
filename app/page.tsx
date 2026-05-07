@@ -811,7 +811,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.3 }}
-                className="relative bg-[#1A1A1A] border border-white/10 p-6 sm:p-8 md:p-10 flex flex-col justify-between group overflow-hidden flex-1 rounded-3xl shadow-lg"
+                className="relative bg-[#1A1A1A] border border-white/10 p-6 sm:p-8 md:p-10 flex flex-col justify-between group overflow-hidden flex-1 rounded-3xl shadow-lg mb-8"
               >
                 <div className="absolute -bottom-4 -right-4 text-white/5 pointer-events-none select-none">
                   <svg className="w-28 h-28" fill="currentColor" viewBox="0 0 24 24">
@@ -914,6 +914,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
+              className="mb-8 sm:mb-0"
             >
               <a
                 href="https://web.facebook.com/people/Viva-Pizzeria-and-Pasta/61564076226960/"
