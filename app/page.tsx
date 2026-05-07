@@ -109,8 +109,8 @@ export default function Home() {
             </nav>
 
             <div className="hidden md:block">
-              <PremiumButton 
-                href="#reservation" 
+              <PremiumButton
+                href="#reservation"
                 variant={isScrolled ? "dark" : "outline"}
                 className="!px-8 !py-3"
               >
@@ -175,34 +175,45 @@ export default function Home() {
           }}
         >
           {/* Right side Diagonal Video Layout */}
-          <motion.div 
+          <motion.div
             style={{ y: foregroundY }}
             className="absolute top-0 right-0 w-full md:w-[55%] lg:w-[60%] h-[120%] -mt-[10%] z-0 hidden lg:block"
           >
-            <div 
+            <div
               className="w-full h-full shadow-[0_0_50px_rgba(0,0,0,0.5)] relative"
-              style={{ clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0% 100%)" }}
+              style={{ clipPath: "polygon(35% 0, 100% 0, 100% 100%, 35% 100%, 0% 50%)" }}
             >
-              <video 
-                src="/hero_video.mp4" 
-                autoPlay 
-                loop 
-                muted 
-                playsInline 
+              <video
+                src="/hero_video.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="w-full h-full object-cover opacity-80"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent"></div>
             </div>
+
+            {/* Outline Stroke for the Chevron Polygon */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <polyline
+                points="35,0 0,50 35,100"
+                vectorEffect="non-scaling-stroke"
+                fill="none"
+                stroke="rgba(255,255,255,0.4)"
+                strokeWidth="2"
+              />
+            </svg>
           </motion.div>
 
           {/* Mobile Video Background */}
           <div className="absolute inset-0 w-full h-full z-0 lg:hidden opacity-30">
-            <video 
-              src="/hero_video.mp4" 
-              autoPlay 
-              loop 
-              muted 
-              playsInline 
+            <video
+              src="/hero_video.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
               className="w-full h-full object-cover"
             />
           </div>
@@ -215,13 +226,13 @@ export default function Home() {
 
           <motion.div
             style={{ y: foregroundY, opacity: contentOpacity, scale: contentScale }}
-            className="container mx-auto px-4 sm:px-6 md:px-16 flex items-center pt-20 sm:pt-32 md:pt-40 pb-16 sm:pb-20 md:pb-24 relative z-20 w-full"
+            className="container mx-auto px-4 sm:px-6 md:px-10 flex items-center pt-20 sm:pt-32 md:pt-40 pb-16 sm:pb-20 md:pb-24 relative z-20 w-full"
           >
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="max-w-2xl text-center lg:text-left flex flex-col items-center lg:items-start"
+              className="max-w-2xl text-center lg:text-left flex flex-col items-center lg:items-start lg:-ml-8 xl:-ml-16 2xl:-ml-24"
             >
               <div className="mb-8 md:mb-12 flex flex-col gap-4 items-center lg:items-start">
                 <motion.span
@@ -246,7 +257,7 @@ export default function Home() {
                 "Mastering the alchemy of wood-fired flames and hand-kneaded tradition since 1994."
               </p>
 
-              <div className="flex flex-wrap gap-6 md:gap-8 items-center justify-center lg:justify-start">
+              <div className="flex flex-wrap gap-6 md:gap-8 items-center justify-center lg:justify-start mt-8 md:mt-12">
 
                 <PremiumButton href="#reservation">
                   Order Now
